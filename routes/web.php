@@ -11,8 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => '/'], function () {
+    Route::get('', 'PagesController@index')->name('index');
+    Route::get('admin', 'PagesController@adminLogin')->name('admin.login');
+    Route::get('seller', 'PagesController@sellerLogin')->name('seller.login');
 });
 
 Auth::routes();
