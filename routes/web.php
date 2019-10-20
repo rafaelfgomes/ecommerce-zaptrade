@@ -13,8 +13,8 @@
 
 Route::group(['prefix' => '/'], function () {
     Route::get('', 'PagesController@index')->name('index');
-    Route::get('admin', 'PagesController@adminLogin')->name('admin.login');
-    Route::get('seller', 'PagesController@sellerLogin')->name('seller.login');
+    Route::get('admin', 'PagesController@adminLogin')->name('admin.login.page');
+    Route::post('admin', 'Auth\LoginController@login')->name('admin.login');
 });
 
 Auth::routes();

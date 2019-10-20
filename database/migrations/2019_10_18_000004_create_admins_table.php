@@ -17,11 +17,9 @@ class CreateAdminsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 80);
             $table->string('email', 60)->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 190);
-            $table->integer('profile_id')->unsigned();
-            $table->foreign('profile_id')->on('profiles')->references('id');
-            $table->rememberToken();
+            $table->bigInteger('profile_id')->unsigned();
+            $table->foreign('profile_id')->references('id')->on('profiles');
             $table->timestamps();
         });
     }

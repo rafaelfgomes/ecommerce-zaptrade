@@ -2,10 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     /**
      * Show the index page.
@@ -27,20 +38,19 @@ class PagesController extends Controller
     public function adminLogin()
     {
 
-        return view('auth.admin.login');
+        $profiles = Profile::all();
+
+        return view('auth.admin.login')->with('profiles', $profiles);
     
     }
 
-    /**
-     * Show the login form to sellers.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function sellerLogin()
+    public function contact()
     {
+        
+        return view('pages.ecommerce.contact');
 
-        return view('auth.user.login');
-    
     }
+
+    
 
 }

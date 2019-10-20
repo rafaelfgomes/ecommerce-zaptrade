@@ -17,11 +17,9 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 190);
-            $table->integer('profile_id')->unsigned();
-            $table->foreign('profile_id')->on('profiles')->references('id');
-            $table->rememberToken();
+            $table->bigInteger('profile_id')->unsigned();
+            $table->foreign('profile_id')->references('id')->on('profiles')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -35,4 +33,5 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
     }
+    
 }
