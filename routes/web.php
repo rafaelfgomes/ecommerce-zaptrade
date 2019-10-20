@@ -15,8 +15,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('', 'PagesController@index')->name('index');
     Route::get('admin', 'PagesController@adminLogin')->name('admin.login.page');
     Route::post('admin', 'Auth\LoginController@login')->name('admin.login');
+    Route::get('contact', 'PagesController@contact')->name('contact.page');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
