@@ -24,7 +24,7 @@
 
             @foreach ($categories as $category)
             
-              <a class="dropdown-item" href="{{ route($category->slug_name . '.page') }}">{{ $category->name }}</a>
+              <a class="dropdown-item" href="{{ route('category.page', [ 'name' => $category->slug_name ]) }}">{{ $category->name }}</a>
                 
             @endforeach
 

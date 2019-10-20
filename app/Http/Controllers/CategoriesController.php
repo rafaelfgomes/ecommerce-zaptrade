@@ -7,33 +7,18 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+
+    public function show($name)
+    {
+
+        $products = [];
+
+        return view('pages.ecommerce.categories.show')->with([
+            'categories' => Category::all(),
+            'selected' => Category::where('slug_name', $name)->first('name'),
+            'products' => $products
+        ]);
     
-    public function appliances()
-    {
-        
-        return view('pages.ecommerce.categories.appliances')->with('categories', Category::all());
-
-    }
-
-    public function computing()
-    {
-        
-        return view('pages.ecommerce.categories.computing')->with('categories', Category::all());
-
-    }
-
-    public function furniture()
-    {
-        
-        return view('pages.ecommerce.categories.furniture')->with('categories', Category::all());
-
-    }
-
-    public function mobile()
-    {
-        
-        return view('pages.ecommerce.categories.mobile')->with('categories', Category::all());
-
     }
 
 }

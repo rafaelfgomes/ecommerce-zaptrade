@@ -2,9 +2,9 @@
 
 @section('content')
 
-    @include('partials._header')
+    @include('partials.ecommerce._header')
 
-    @include('partials._navbar')
+    @include('partials.ecommerce._navbar')
 
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
 
@@ -54,6 +54,6 @@
 
     </section>
 
-    @include('partials._footer')
+    @include('partials.ecommerce._footer')
 
 @endsection

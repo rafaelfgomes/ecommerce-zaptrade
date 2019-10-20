@@ -2,9 +2,9 @@
 
 @section('content')
 
-  @include('partials._header')
+  @include('partials.ecommerce._header')
 
-  @include('partials._navbar')
+  @include('partials.ecommerce._navbar')
 
   <section class="ftco-section bg-light">
 
@@ -86,8 +86,8 @@
 
   </section>
 
-  @include('partials._newsletter')
+  @include('partials.ecommerce._newsletter')
 
-  @include('partials._footer')
+  @include('partials.ecommerce._footer')
 
 @endsection
