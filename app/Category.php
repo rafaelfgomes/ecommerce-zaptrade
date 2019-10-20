@@ -12,7 +12,7 @@ class Category extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'name' ];
+    protected $fillable = [ 'name', 'slug_name' ];
 
     public function products()
     {

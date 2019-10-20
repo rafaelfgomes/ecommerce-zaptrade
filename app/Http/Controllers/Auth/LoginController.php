@@ -64,11 +64,13 @@ class LoginController extends Controller
 
                     $request->session()->regenerate();
 
+                    Auth::login($user);
+
                     return redirect()->route('dashboard');
 
                 } else {
 
-                    dd('Usuário ou senha inválidos');
+                    return redirect()->route('admin.login.page');
 
                 }
                 
@@ -77,11 +79,11 @@ class LoginController extends Controller
 
                 if ($profileId == 1) {
 
-                    dd('Gerente não cadastrado');
+                    return redirect()->route('admin.login.page');
                 
                 }
 
-                dd('Vendedor não cadastrado');
+                return redirect()->route('admin.login.page');
 
             }
 

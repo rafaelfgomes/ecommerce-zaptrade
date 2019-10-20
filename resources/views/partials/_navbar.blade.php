@@ -22,7 +22,11 @@
           
           <div class="dropdown-menu" aria-labelledby="dropdown-categories">
 
-            <a class="dropdown-item" href="shop.html">Shop</a>
+            @foreach ($categories as $category)
+            
+              <a class="dropdown-item" href="{{ route($category->slug_name . '.page') }}">{{ $category->name }}</a>
+                
+            @endforeach
 
           </div>
         

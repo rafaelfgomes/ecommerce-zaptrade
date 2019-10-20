@@ -14,10 +14,10 @@ class CategoriesTableSeeder extends Seeder
     {
         
         $params = [
-           [ 'name' => 'Informática' ],
-           [ 'name' => 'Telefonia' ],
-           [ 'name' => 'Móveis' ],
-           [ 'name' => 'Eletrodomésticos' ]
+           [ 'name' => 'Informática', 'slug_name' => 'computing' ],
+           [ 'name' => 'Telefonia', 'slug_name' => 'mobile' ],
+           [ 'name' => 'Móveis', 'slug_name' => 'furniture' ],
+           [ 'name' => 'Eletrodomésticos', 'slug_name' => 'appliances' ]
         ];
 
         Category::insert($params);

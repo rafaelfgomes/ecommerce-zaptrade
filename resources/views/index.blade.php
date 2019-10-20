@@ -30,14 +30,14 @@
           
           <div class="product">
 
-            <a href="#" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
+            <a href="{{ route('product.details') }}" class="img-prod"><img class="img-fluid" src="images/product-6.jpg" alt="Colorlib Template">
               <div class="overlay"></div>
             </a>
             
             <div class="text py-3 px-3">
               
               <h3>
-                <a href="#">Floral Jackquard Pullover</a>
+                <a href="{{ route('product.details') }}">Floral Jackquard Pullover</a>
               </h3>
               
               <div class="d-flex">
@@ -66,7 +66,7 @@
 
               <p class="bottom-area d-flex px-3">
 
-                <a href="#" class="add-to-cart text-center py-2 mr-1">
+                <a href="{{ route('product.details') }}" class="add-to-cart text-center py-2 mr-1">
                   <span>
                     <i class="ion-ios-add mr-2"></i>Detalhes
                   </span>

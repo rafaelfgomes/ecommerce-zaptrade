@@ -8,19 +8,33 @@
         
         <div class="col-md-7 text-center heading-section ftco-animate">
           
-          <h2>Subcribe to our Newsletter</h2>
+          <h2>Assine nosso informativo</h2>
+
           <div class="row d-flex justify-content-center mt-5">
+            
             <div class="col-md-8">
+              
               <form action="#" class="subscribe-form">
+                
                 <div class="form-group d-flex">
-                  <input type="text" class="form-control" placeholder="Enter email address">
-                  <input type="submit" value="Subscribe" class="submit px-3">
+
+                  <input type="text" class="form-control" placeholder="Digite seu e-mail">
+                  <input type="submit" value="Assinar" class="submit px-3">
+                
                 </div>
+              
               </form>
+            
             </div>
+          
           </div>
+        
         </div>
+      
       </div>
+    
     </div>
+  
   </div>
+
 </section>

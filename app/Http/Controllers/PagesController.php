@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Profile;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class PagesController extends Controller
     public function index()
     {
 
-        return view('index');
+        return view('index')->with([ 
+            'categories' => Category::all(),
+        ]);
     
     }
 
@@ -38,19 +41,19 @@ class PagesController extends Controller
     public function adminLogin()
     {
 
-        $profiles = Profile::all();
-
-        return view('auth.admin.login')->with('profiles', $profiles);
+        return view('auth.admin.login')->with([
+            'profiles', Profile::all()
+        ]);
     
     }
 
     public function contact()
     {
         
-        return view('pages.ecommerce.contact');
+        return view('pages.ecommerce.contact.form')->with([
+            'categories', Category::all()
+        ]);
 
     }
-
-    
 
 }
