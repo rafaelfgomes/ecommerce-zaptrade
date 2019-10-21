@@ -42,7 +42,7 @@ class PagesController extends Controller
     {
 
         return view('auth.admin.login')->with([
-            'profiles', Profile::all()
+            'profiles' => Profile::all()
         ]);
     
     }
@@ -51,7 +51,7 @@ class PagesController extends Controller
     {
         
         return view('pages.ecommerce.contact.form')->with([
-            'categories', Category::all()
+            'categories' => Category::all()
         ]);
 
     }

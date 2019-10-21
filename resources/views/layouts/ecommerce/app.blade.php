@@ -4,7 +4,7 @@
 
     <head>
 
-        @include('partials._head')
+        @include('partials.ecommerce._head')
 
     </head>
 
@@ -12,7 +12,7 @@
 
         @yield('content')
         
-        @include('partials._scripts')
+        @include('partials.ecommerce._scripts')
 
     </body>
     

@@ -25,7 +25,7 @@
                         <div class="input-group mb-3">
 
                             <div class="input-group-append">
-                                <span class="input-group-text-login pt-1 pr-2 pl-2"><i class="fas fa-user"></i></span>
+                                <span class="input-group-text pt-1 pr-2 pl-2"><i class="fas fa-user"></i></span>
                             </div>
                             <input type="text" name="email" class="form-control input_user" placeholder="Digite seu e-mail" required>
 
@@ -34,7 +34,7 @@
                         <div class="input-group mb-3">
 
                             <div class="input-group-append">
-                                <span class="input-group-text-login pt-1 pr-2 pl-2"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text pt-1 pr-2 pl-2"><i class="fas fa-key"></i></span>
                             </div>
 
                             <input type="password" name="password" class="form-control input_pass" placeholder="Digite sua senha" required>
@@ -44,7 +44,7 @@
                         <div class="input-group mb-4">
 
                             <div class="input-group-append">
-                                <span class="input-group-text-login pt-1 pr-2 pl-2"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text pt-1 pr-2 pl-2"><i class="fas fa-key"></i></span>
                             </div>
 
                             <select class="custom-select select-profiles" name="profile-id" id="inputGroupSelectProfile">

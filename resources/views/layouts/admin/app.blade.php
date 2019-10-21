@@ -4,7 +4,7 @@
 
     <head>
 
-        @include('partials._head')
+        @include('partials.dashboard._head')
 
     </head>
 
@@ -20,7 +20,7 @@
 
         </div>
 
-        @include('partials._scripts')
+        @include('partials.dashboard._scripts')
     
     </body>
     

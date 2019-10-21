@@ -1,9 +1,9 @@
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
-<script src="{{ asset('js/jquery.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap_ecommerce/jquery.min.js') }}" defer></script>
 <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}" defer></script>
-<script src="{{ asset('js/popper.min.js') }}" defer></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap_ecommerce/popper.min.js') }}" defer></script>
+<script src="{{ asset('js/bootstrap_ecommerce/bootstrap.min.js') }}" defer></script>
 <script src="{{ asset('js/jquery.easing.1.3.js') }}" defer></script>
 <script src="{{ asset('js/jquery.waypoints.min.js') }}" defer></script>
 <script src="{{ asset('js/jquery.stellar.min.js') }}" defer></script>

@@ -33,6 +33,12 @@ Route::group(['prefix' => '/'], function () {
         Route::post('admin', 'Auth\LoginController@login')->name('admin.login');
 
     });
+
+    Route::group([ 'prefix' => 'dashboard' ], function () {
+        
+        Route::get('', 'DashboardController@index')->name('dashboard.index');
+
+    });
     
     Route::group([ 'prefix' => 'categories' ], function () {
 
