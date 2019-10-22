@@ -37,6 +37,9 @@ Route::group(['prefix' => '/'], function () {
     Route::group([ 'prefix' => 'dashboard' ], function () {
         
         Route::get('', 'DashboardController@index')->name('dashboard.index');
+        Route::get('users/profile', 'DashboardController@userProfile')->name('dashboard.user.profile');
+        Route::get('products/register', 'DashboardController@productRegister')->name('dashboard.product.register');
+        Route::get('categories/register', 'DashboardController@categoryRegister')->name('dashboard.category.register');
 
     });
     

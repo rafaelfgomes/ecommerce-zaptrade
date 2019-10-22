@@ -28,4 +28,25 @@ class DashboardController extends Controller
     
     }
 
+    public function userProfile()
+    {
+
+        return view('pages.dashboard.users.profile')->with([]);
+    
+    }
+
+    public function productRegister()
+    {
+        
+        return view('pages.dashboard.products.register')->with([]);
+
+    }
+
+    public function categoryRegister()
+    {
+        
+        return view('pages.dashboard.categories.register')->with([]);
+
+    }
+
 }

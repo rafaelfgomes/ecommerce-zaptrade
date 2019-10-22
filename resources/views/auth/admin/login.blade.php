@@ -2,9 +2,9 @@
 
 @section('content')
 
-    <div class="container h-100">
+    <div class="container h-100 pt-5">
 
-        <div class="d-flex justify-content-center h-100 mt-3">
+        <div class="d-flex justify-content-center h-100 pt-4">
             
             <div class="user_card mt-5">
                 
