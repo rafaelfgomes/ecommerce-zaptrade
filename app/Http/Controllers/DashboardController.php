@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -25,27 +26,31 @@ class DashboardController extends Controller
     {
 
         return view('pages.dashboard.index')->with([]);
-    
+
     }
 
-    public function userProfile()
+    public function profile()
     {
 
         return view('pages.dashboard.users.profile')->with([]);
-    
-    }
-
-    public function productRegister()
-    {
-        
-        return view('pages.dashboard.products.register')->with([]);
 
     }
 
-    public function categoryRegister()
+    public function products()
     {
-        
-        return view('pages.dashboard.categories.register')->with([]);
+
+        return view('pages.dashboard.products.index')->with([]);
+
+    }
+
+    public function categories()
+    {
+
+        return view('pages.dashboard.categories.index')->with([
+
+            'categories' => Category::all()
+
+        ]);
 
     }
 

@@ -9,15 +9,15 @@
     <div class="main-panel">
 
       @include('partials.dashboard._navbar')
-      
+
       <div class="content">
 
         <div class="row">
-          
+
           <div class="col-md-12">
 
             <div class="card card-user">
-              
+
               <div class="card-header">
                 <h5 class="card-title">Cadastrar novo produto</h5>
               </div>
@@ -25,11 +25,11 @@
               <div class="card-body">
 
                 <form>
-                  
+
                   <div class="row">
 
                     <div class="col-md-5 pr-1">
-                      
+
                       <div class="form-group">
                         <label>Company (disabled)</label>
                         <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
@@ -38,25 +38,25 @@
                     </div>
 
                     <div class="col-md-3 px-1">
-                      
+
                       <div class="form-group">
                         <label>Username</label>
                         <input type="text" class="form-control" placeholder="Username" value="michael23">
                       </div>
 
                     </div>
-                    
+
                     <div class="col-md-4 pl-1">
 
                       <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
                         <input type="email" class="form-control" placeholder="Email">
                       </div>
-                    
+
                     </div>
 
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
@@ -120,19 +120,19 @@
                 </form>
 
               </div>
-              
+
             </div>
 
           </div>
-          
+
         </div>
 
       </div>
-      
+
       @include('partials.dashboard._footer')
 
     </div>
 
   </div>
-    
+
 @endsection

@@ -1,13 +1,13 @@
-@extends('layouts.admin.app')
+@extends('layouts.dashboard.app')
 
 @section('content')
 
     <div class="container h-100 pt-5">
 
         <div class="d-flex justify-content-center h-100 pt-4">
-            
+
             <div class="user_card mt-5">
-                
+
                 <div class="d-flex justify-content-center">
 
                     <div class="brand_logo_container">
@@ -15,7 +15,7 @@
                         <img src="{{ asset('images/zaptradeadmin.jpg') }}" class="brand_logo" alt="Logo">
 
                     </div>
-                    
+
                 </div>
 
                 <div class="d-flex justify-content-center form_container">
@@ -52,9 +52,9 @@
                                 @foreach ($profiles as $profile)
 
                                     <option value="{{ $profile->id }}">{{ $profile->name }}</option>
-                                
+
                                 @endforeach
-                            
+
                             </select>
 
                         </div>
