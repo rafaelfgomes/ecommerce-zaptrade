@@ -7,3 +7,5 @@
 <script src="{{ asset('js/chartjs.min.js') }}" defer></script>
 <script src="{{ asset('js/bootstrap-notify.js') }}" defer></script>
 <script src="{{ asset('js/paper-dashboard.min.js') }}" defer></script>
+<script src="{{ asset('js/select2.full.min.js') }}" defer></script>
+<script src="{{ asset('js/custom.js') }}" defer></script>

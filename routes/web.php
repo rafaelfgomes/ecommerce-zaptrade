@@ -47,6 +47,8 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('{name}', 'CategoriesController@show')->name('category.page');
         Route::post('', 'CategoriesController@store')->name('category.store');
+        Route::put('update', 'CategoriesController@update')->name('category.update');
+        Route::get('slug-name/{id}', 'CategoriesController@getSlugName')->name('category.slug.name');
 
     });
 

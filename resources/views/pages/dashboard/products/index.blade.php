@@ -19,7 +19,7 @@
             <div class="card">
 
               <div class="card-header">
-                <h4 class="card-title">Produtos</h4>
+                <h4 class="card-title">Produtos cadastrados</h4>
               </div>
 
               <div class="card-body">
