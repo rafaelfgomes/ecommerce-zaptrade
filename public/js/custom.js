@@ -6,8 +6,6 @@ $(document).ready(function () {
     var selected = $(this).val()
     var length = selected.length
 
-    console.log(length)
-
     $('#categories').find('option').each(function () {
       if ($(this).val() == selected) {
 
@@ -15,8 +13,8 @@ $(document).ready(function () {
         var url = baseUrl + '/categories/slug-name/' + categoryId
 
         if (length == 0) {
-            
-          $('#slug-name').attr('disabled', 'disabled')  
+
+          $('#slug-name').attr('disabled', 'disabled')
 
         } else {
 
@@ -24,13 +22,14 @@ $(document).ready(function () {
 
             if (response.data.slug_name == ' ') {
 
-              $('#slug-name').val()
+              $('#slug-name').val('')
               $('#slug-name').attr('disabled', 'disabled')
-              
+
             } else {
 
               $('#slug-name').removeAttr('disabled')
               $('#slug-name').val(response.data.slug_name)
+              $('#category-id').val(categoryId)
 
             }
 
@@ -49,9 +48,9 @@ $(document).ready(function () {
     var length = selected.length
 
     if (length == 0) {
-            
-      $('#slug-name').val('')  
-      $('#slug-name').attr('disabled', 'disabled')  
+
+      $('#slug-name').val('')
+      $('#slug-name').attr('disabled', 'disabled')
 
     }
 

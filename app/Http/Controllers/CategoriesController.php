@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 
 class CategoriesController extends Controller
 {
@@ -42,17 +43,21 @@ class CategoriesController extends Controller
 
     }
 
-    public function update(CategoryStoreRequest $request, $id)
+    public function update(CategoryUpdateRequest $request)
     {
-        
+
+        dd($request->all());
+
         // Retrieve the validated input data
         $validated = $request->validated();
 
         if ($validated) {
-            
+
+            $id = $request->input('id');
+
             $params = [
 
-                'name' => $request->input('category-name'),
+                'name' => $request->input('name'),
                 'slug_name' => $request->input('slug-name')
 
             ];
