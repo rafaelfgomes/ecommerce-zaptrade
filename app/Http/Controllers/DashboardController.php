@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -34,7 +34,8 @@ class DashboardController extends Controller
     {
 
         return view('pages.dashboard.users.profile')->with([
-            'users' => User::all()
+            'user' => Auth::user(),
+            'profile' => Auth::user()->profile->name
         ]);
 
     }
@@ -51,7 +52,7 @@ class DashboardController extends Controller
 
         return view('pages.dashboard.categories.index')->with([
 
-            'categories' => Category::all()
+            'categories' => Category::paginate(4)
 
         ]);
 

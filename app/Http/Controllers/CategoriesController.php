@@ -22,6 +22,15 @@ class CategoriesController extends Controller
 
     }
 
+    public function register()
+    {
+        
+        return view('pages.dashboard.categories.register')->with([
+            'categories' => Category::all()
+        ]);
+
+    }
+
     public function store(CategoryStoreRequest $request)
     {
 

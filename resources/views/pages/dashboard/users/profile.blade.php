@@ -31,18 +31,18 @@
                   <a href="#" class="text-decoration-none">
                     
                     <img class="avatar border-gray" src="{{ asset('images/dashboard/mike.jpg') }}" alt="">
-                    <h5 class="title">Chet Faker</h5>
+                    <h5 class="title">{{ $user->name }}</h5>
 
                   </a>
                   
                   <p class="description">
-                    user@email.com
+                    {{ $user->email }}
                   </p>
 
                 </div>
 
                 <p class="description text-center">
-                  Gerente
+                  {{ $profile }}
                 </p>
               
               </div>
@@ -70,7 +70,7 @@
                       <div class="form-group">
 
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="Nome" value="Fulano">
+                        <input type="text" class="form-control" placeholder="Nome" value="{{ $user->name }}">
                       
                       </div>
 
@@ -81,7 +81,7 @@
                       <div class="form-group">
                         
                         <label>E-mail</label>
-                        <input type="text" class="form-control" placeholder="E-mail" value="fulano@email.com">
+                        <input type="text" class="form-control" placeholder="E-mail" value="{{ $user->email }}">
 
                       </div>
 
@@ -96,7 +96,7 @@
                       <div class="form-group">
 
                         <label>Perfil</label>
-                        <input type="text" class="form-control" placeholder="Perfil" value="Gerente">
+                        <input type="text" class="form-control" placeholder="Perfil" value="{{ $profile }}">
                       
                       </div>
                     
@@ -106,7 +106,7 @@
 
                       <div class="form-group">
                         <label>Cadastrado em</label>
-                        <input type="text" class="form-control" placeholder="Data de cadastro" value="01/10/2019" disabled>
+                        <input type="text" class="form-control" placeholder="Data de cadastro" value="{{ $user->created_at }}" disabled>
                       </div>
                     
                     </div>

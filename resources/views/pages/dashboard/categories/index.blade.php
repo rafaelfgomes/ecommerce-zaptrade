@@ -16,62 +16,53 @@
 
           <div class="col-md-12">
 
-            <div class="card card-user">
+            <div class="card">
 
               <div class="card-header">
-                <h5 class="card-title">Categorias cadastradas</h5>
+                <h4 class="card-title">Categorias cadastradas</h4>
               </div>
 
               <div class="card-body">
 
-                <form>
+                <div class="table-responsive">
 
-                  <div class="row">
+                  <table class="table">
 
-                    <div class="col-md-6 pr-1">
+                    <thead class="text-primary">
+                      <th class="text-center">#</th>
+                      <th>Nome</th>
+                      <th>Slug</th>
+                      <th class="text-center">Ações</th>
+                    </thead>
 
-                      <div class="form-group">
+                    <tbody>
 
-                        <label>Nome da categoria</label>
-                        <input type="text" id="cat" data-url="{{ url('/') }}" class="form-control" list="categories" name="update-name">
-                          <datalist id="categories">
+                      @foreach ($categories as $category)
+                          
+                        <tr>
+                          <td class="text-center">
+                            {{ $category->id }}
+                          </td>
+                          <td>
+                              {{ $category->name }}
+                          </td>
+                          <td>
+                              {{ $category->slug_name }}
+                          </td>
+                          <td class="text-center">
+                              <a class="btn btn-primary btn-round" href="{{ route('category.register.page') }}" role="button"><i class="fas fa-edit"></i></a>
+                              <button type="button" id="delete-category" class="btn btn-danger btn-round"><i class="fas fa-trash"></i></button>
+                          </td>
+                          
+                        </tr>
 
-                            @foreach ($categories as $category)
+                      @endforeach
 
-                              <option data-id="{{ $category->id }}" value="{{ $category->name }}">
+                    </tbody>
 
-                            @endforeach
+                  </table>
 
-                          </datalist>
-
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-6 pl-1">
-
-                      <div class="form-group">
-
-                        <label>Slug</label>
-                        <input type="text" id="slug-name" class="form-control" name="slug-name" required placeholder="" disabled>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  <div class="row pt-3">
-
-                    <input type="hidden" id="category-id" name="category-id">
-                    
-                    <div class="update ml-auto mr-auto">
-                      <button type="button" id="update-category" class="btn btn-primary btn-round" disabled>Atualizar categoria</button>
-                    </div>
-
-                  </div>
-
-                </form>
+                </div>
 
               </div>
 
@@ -81,62 +72,16 @@
 
         </div>
 
-        <div class="row">
+        <div class="row pt-2">
 
-          <div class="col-md-12">
-
-            <div class="card card-user">
-
-              <div class="card-header">
-                <h5 class="card-title">Cadastrar nova categoria</h5>
-              </div>
-
-              <div class="card-body">
-
-                <form>
-
-                  <div class="row">
-
-                    <div class="col-md-6 pr-1">
-
-                      <div class="form-group">
-
-                        <label>Nome da categoria</label>
-                        <input type="text" class="form-control" id="category-store-name" name="name" required placeholder="Digite o nome da categoria">
-
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-6 pl-1">
-
-                      <div class="form-group">
-
-                        <label>Slug</label>
-                        <input type="text" class="form-control" id="slug-store-name" name="slug_name" required placeholder="Digite o slug (nome para aparecer na url)">
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  <div class="row pt-3">
-                    <input type="hidden" id="url" name="url" value="{{ url('/') }}">
-                    <div class="update ml-auto mr-auto">
-                      <button type="button" id="store-category" class="btn btn-primary btn-round">Cadastrar categoria</button>
-                    </div>
-                  </div>
-
-                </form>
-
-              </div>
-
-            </div>
+          <div class="col d-flex justify-content-center">
+            
+            {{ $categories->links() }}
 
           </div>
 
         </div>
+
 
       </div>
 

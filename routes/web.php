@@ -46,6 +46,7 @@ Route::group(['prefix' => '/'], function () {
     Route::group([ 'prefix' => 'categories' ], function () {
 
         Route::get('{name}', 'CategoriesController@show')->name('category.page');
+        Route::get('register', 'CategoriesController@register')->name('category.register.page');
         Route::post('', 'CategoriesController@store')->name('category.store');
         Route::post('update', 'CategoriesController@update')->name('category.update');
         Route::get('by-id/{id}', 'CategoriesController@getCategory')->name('category.get');
@@ -54,4 +55,4 @@ Route::group(['prefix' => '/'], function () {
 
 });
 
-Auth::routes();
+//Auth::routes();
