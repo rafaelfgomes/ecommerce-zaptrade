@@ -14,6 +14,13 @@ class Category extends Model
      */
     protected $fillable = [ 'name', 'slug_name' ];
 
+    /**
+     * Remove timestamps from model.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     public function products()
     {
 

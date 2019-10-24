@@ -14,6 +14,13 @@ class Profile extends Model
      */
     protected $fillable = [ 'name' ];
 
+    /**
+     * Remove timestamps from model.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
     public function users()
     {
 

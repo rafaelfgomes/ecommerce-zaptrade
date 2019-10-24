@@ -32,12 +32,14 @@ class CategoriesController extends Controller
 
             $params = [
 
-                'name' => $request->input('name'),
-                'slug_name' => $request->input('slug-name')
+                'name' => $request->name,
+                'slug_name' => $request->slug
 
             ];
 
-            Category::insert($params);
+            $category = Category::create($params);
+
+            return response()->json([ 'category' => $category ]);
 
         }
 
@@ -46,34 +48,30 @@ class CategoriesController extends Controller
     public function update(CategoryUpdateRequest $request)
     {
 
-        dd($request->all());
-
         // Retrieve the validated input data
         $validated = $request->validated();
 
         if ($validated) {
 
-            $id = $request->input('id');
+            $category = Category::find($request->input('id'));
 
-            $params = [
+            $category->name = $request->input('name');
+            $category->slug_name = $request->input('slug');
 
-                'name' => $request->input('name'),
-                'slug_name' => $request->input('slug-name')
+            $category->save();
 
-            ];
-
-            Category::where('id', $id)->update($params);
+            return response()->json([ 'category' => $category ]) ;
 
         }
 
     }
 
-    public function getSlugName($id)
+    public function getCategory($id)
     {
 
-        $slug = Category::where('id', $id)->first('slug_name');
+        $data = Category::where('id', $id)->first();
 
-        return response()->json([ 'data' => $slug ]);
+        return response()->json([ 'data' => $data ]);
 
     }
 

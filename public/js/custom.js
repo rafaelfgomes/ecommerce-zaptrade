@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+  toastr.options.closeButton = true;
+  toastr.options={positionClass: 'toast-top-center'};
+
   $('#cat').on('input', function () {
 
     var baseUrl = $(this).data('url')
@@ -10,11 +13,12 @@ $(document).ready(function () {
       if ($(this).val() == selected) {
 
         var categoryId = $(this).data('id')
-        var url = baseUrl + '/categories/slug-name/' + categoryId
+        var url = baseUrl + '/categories/by-id/' + categoryId
 
         if (length == 0) {
 
           $('#slug-name').attr('disabled', 'disabled')
+          $('#update-category').attr('disabled', 'disabled')
 
         } else {
 
@@ -22,14 +26,16 @@ $(document).ready(function () {
 
             if (response.data.slug_name == ' ') {
 
-              $('#slug-name').val('')
+              $('#slug-name').val()
               $('#slug-name').attr('disabled', 'disabled')
+              $('#update-category').attr('disabled', 'disabled')
 
             } else {
 
               $('#slug-name').removeAttr('disabled')
+              $('#update-category').removeAttr('disabled')
               $('#slug-name').val(response.data.slug_name)
-              $('#category-id').val(categoryId)
+              $('#category-id').val(response.data.id)
 
             }
 
@@ -54,6 +60,69 @@ $(document).ready(function () {
 
     }
 
+  })
+
+  $('#store-category').on('click', function () {
+
+    var name = $('#category-store-name').val()
+    var slug = $('#slug-store-name').val()
+
+    var url = $('#url').val() + '/categories'
+
+    $.post(url, { name: name, slug: slug })
+      .done(function(response) {
+        
+        toastr.success('Categoria ' + response.category.name + ' cadastrada com sucesso!', 'Categoria cadastrada', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#cat-name').val('')
+        $('#slug-name').val('')
+        
+      })
+      .fail(function() {
+        
+        toastr.error('Erro ao cadastrar a categoria')
+
+      })   
+    
+  })
+
+  $('#update-category').on('click', function () {
+
+    var id = $('#category-id').val()
+    var name = $('#cat').val()
+    var slug = $('#slug-name').val()
+
+    var url = $('#cat').data('url') + '/categories/update'
+
+    $.post(url, { id: id, name: name, slug: slug })
+      .done(function(response) {
+        
+        toastr.success('Categoria ' + response.category.name + ' atualizada com sucesso!', 'Categoria atualizada', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#cat').val('')
+        $('#slug-name').val('')
+        $('#slug-name').attr('disabled', 'disabled')
+        $('#update-category').attr('disabled', 'disabled')
+
+      })
+      .fail(function() {
+        
+        toastr.error('Erro ao atualizar a categoria')
+
+      })   
+    
   })
 
 })

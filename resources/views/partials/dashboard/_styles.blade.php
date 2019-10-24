@@ -5,3 +5,4 @@
 <link href="{{ asset('css/select2.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/paper-dashboard.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/dashboard-custom.css') }}" rel="stylesheet">
+<link href="{{ asset('css/toastr.min.css') }}" rel="stylesheet">
