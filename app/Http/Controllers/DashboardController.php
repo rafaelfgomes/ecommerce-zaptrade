@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -35,7 +36,9 @@ class DashboardController extends Controller
 
         return view('pages.dashboard.users.profile')->with([
             'user' => Auth::user(),
-            'profile' => Auth::user()->profile->name
+            'profiles' => Profile::all(),
+            'userProfileName' => Auth::user()->profile->name,
+            'userProfileId' => Auth::user()->profile->id
         ]);
 
     }

@@ -65,6 +65,15 @@
 
       </li>
 
+      <li @if (url()->current() == route('category.register.page')) class="active" @endif>
+
+        <a href="{{ route('category.register.page') }}">
+          <i class="nc-icon nc-single-02"></i>
+          <p>Cadastrar categoria</p>
+        </a>
+
+      </li>
+
     </ul>
 
   </div>

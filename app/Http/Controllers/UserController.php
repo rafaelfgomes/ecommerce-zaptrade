@@ -54,4 +54,9 @@ class UserController extends Controller
 
     }
 
+    public function update(Type $var = null)
+    {
+        # code...
+    }
+
 }

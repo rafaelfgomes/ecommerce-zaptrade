@@ -3,7 +3,26 @@ $(document).ready(function () {
   toastr.options.closeButton = true;
   toastr.options={positionClass: 'toast-top-center'};
 
-  $('#cat').on('input', function () {
+  $('#updateCategoryModal').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget)
+
+    var id = button.data('id')
+    var name = button.data('name')  
+    var slug = button.data('slug')
+    
+    var buttonUpdate = modal.find('.modal-footer input#button-update')
+    
+    var url = button.data('url') + '/categories/update'
+
+    var modal = $(this)
+
+    modal.find('.modal-body input#update-category-name').val(name)
+    modal.find('.modal-body input#update-slug-name').val(slug)
+
+  })
+
+  $('#update-category-name').on('input', function () {
 
     var baseUrl = $(this).data('url')
     var selected = $(this).val()
@@ -48,7 +67,7 @@ $(document).ready(function () {
 
   })
 
-  $('#cat').on('change', function () {
+  $('#update-category-name').on('change', function () {
 
     var selected = $(this).val()
     var length = selected.length
@@ -62,6 +81,7 @@ $(document).ready(function () {
 
   })
 
+  //Cadastrar categoria
   $('#store-category').on('click', function () {
 
     var name = $('#category-store-name').val()
@@ -92,6 +112,7 @@ $(document).ready(function () {
     
   })
 
+  //Atualizar categoria
   $('#update-category').on('click', function () {
 
     var id = $('#category-id').val()
@@ -125,7 +146,8 @@ $(document).ready(function () {
     
   })
 
-  $('#user-register').on('click', function () {
+  //Cadastrar usuário
+  $('#store-user').on('click', function () {
 
     var name = $('#user-name').val()
     var email = $('#user-email').val()

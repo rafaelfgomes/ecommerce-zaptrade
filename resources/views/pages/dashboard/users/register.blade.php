@@ -101,7 +101,7 @@
                     <div class="update ml-auto mr-auto">
                       <input type="hidden" id="url" value="{{ url('/') }}">
                       <input type="hidden" id="user-logged-profile-id" value="{{ $userProfileId }}">
-                      <button type="button" id="user-register" class="btn btn-primary btn-round">Cadastrar usuário</button>
+                      <button type="button" id="store-user" class="btn btn-primary btn-round">Cadastrar usuário</button>
                     </div>
                   
                   </div>

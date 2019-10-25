@@ -42,7 +42,7 @@
                 </div>
 
                 <p class="description text-center">
-                  {{ $profile }}
+                  {{ $userProfileName }}
                 </p>
               
               </div>
@@ -95,18 +95,53 @@
                       
                       <div class="form-group">
 
-                        <label>Perfil</label>
-                        <input type="text" class="form-control" placeholder="Perfil" value="{{ $profile }}">
+                        <label>Senha atual</label>
+                        <input type="password" class="form-control" placeholder="Senha atual">
                       
                       </div>
                     
                     </div>
                     
                     <div class="col-md-6 pl-1">
-
+                      
                       <div class="form-group">
-                        <label>Cadastrado em</label>
-                        <input type="text" class="form-control" placeholder="Data de cadastro" value="{{ $user->created_at }}" disabled>
+
+                        <label>Nova senha</label>
+                        <input type="password" class="form-control" placeholder="Nova senha">
+                      
+                      </div>
+                    
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+
+                    <div class="col-md-6 offset-md-3 pr-1">
+                      
+                      <div class="form-group">
+
+                        <label>Perfil</label>
+                        <select class="custom-select" id="user-profile-id" name="user-profile-id" id="inputGroupSelectProfile"
+                        @if ($userProfileId > 1) disabled @endif>
+
+                            <option value="0" selected>Escolha o perfil</option>
+                            @foreach ($profiles as $profile)
+
+                              @if ($userProfileId == $profile->id)
+                                  
+                                <option value="{{ $profile->id }}" selected>{{ $profile->name }}</option>
+
+                              @else
+
+                                <option value="{{ $profile->id }}">{{ $profile->name }}</option>
+                                  
+                              @endif
+
+                            @endforeach
+
+                        </select>
+                      
                       </div>
                     
                     </div>

@@ -50,7 +50,7 @@
                               {{ $category->slug_name }}
                           </td>
                           <td class="text-center">
-                              <a class="btn btn-primary btn-round" href="{{ route('category.register.page') }}" role="button"><i class="fas fa-edit"></i></a>
+                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-slug="{{ $category->slug_name }}" data-toggle="modal" data-target="#updateCategoryModal"><i class="fas fa-edit"></i></button>
                               <button type="button" id="delete-category" class="btn btn-danger btn-round"><i class="fas fa-trash"></i></button>
                           </td>
                           
@@ -82,6 +82,7 @@
 
         </div>
 
+        @include('pages.components.dashboard.update-modal')
 
       </div>
 
