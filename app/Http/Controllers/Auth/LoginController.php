@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
-use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

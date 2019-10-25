@@ -48,9 +48,9 @@ class CategoriesController extends Controller
 
             $category = Category::create($params);
 
-            return response()->json([ 'category' => $category ]);
-
         }
+
+        return response()->json([ 'category' => $category ]);
 
     }
 
@@ -69,10 +69,9 @@ class CategoriesController extends Controller
 
             $category->save();
 
-            return response()->json([ 'category' => $category ]) ;
-
         }
-
+        
+        return response()->json([ 'category' => $category ]) ;
     }
 
     public function getCategory($id)

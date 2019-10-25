@@ -34,6 +34,11 @@ Route::group(['prefix' => '/'], function () {
 
     });
 
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('register', 'UserController@register')->name('users.register');
+        Route::post('', 'UserController@store')->name('users.store');
+    });
+
     Route::group([ 'prefix' => 'dashboard' ], function () {
 
         Route::get('', 'DashboardController@index')->name('dashboard.index');
@@ -45,8 +50,8 @@ Route::group(['prefix' => '/'], function () {
 
     Route::group([ 'prefix' => 'categories' ], function () {
 
-        Route::get('{name}', 'CategoriesController@show')->name('category.page');
         Route::get('register', 'CategoriesController@register')->name('category.register.page');
+        Route::get('{name}', 'CategoriesController@show')->name('category.page');
         Route::post('', 'CategoriesController@store')->name('category.store');
         Route::post('update', 'CategoriesController@update')->name('category.update');
         Route::get('by-id/{id}', 'CategoriesController@getCategory')->name('category.get');

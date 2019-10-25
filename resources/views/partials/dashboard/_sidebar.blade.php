@@ -56,6 +56,15 @@
 
       </li>
 
+      <li @if (url()->current() == route('users.register')) class="active" @endif>
+
+        <a href="{{ route('users.register') }}">
+          <i class="nc-icon nc-single-02"></i>
+          <p>Cadastrar usuário</p>
+        </a>
+
+      </li>
+
     </ul>
 
   </div>

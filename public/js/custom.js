@@ -125,4 +125,44 @@ $(document).ready(function () {
     
   })
 
+  $('#user-register').on('click', function () {
+
+    var name = $('#user-name').val()
+    var email = $('#user-email').val()
+    var pass = $('#user-password').val()
+    var profileId = $('#user-profile-id').val()
+    var userLoggedProfileId = $('#user-logged-profile-id').val()
+
+    var url = $('#url').val() + '/users'    
+
+    $.post(url, { name: name, email: email, password: pass, profile_id: profileId })
+      .done(function(response) {
+        
+        toastr.success('Usuário ' + response.user.name + ' cadastrado com sucesso!', 'Usuário cadastrado', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#user-name').val('')
+        $('#user-email').val('')
+        $('#user-password').val('')
+
+        if (userLoggedProfileId == 1) {
+
+          $('#user-profile-id').val('0')
+        
+        }
+        
+      })
+      .fail(function() {
+        
+        toastr.error('Erro ao cadastrar o usuário')
+
+      })   
+    
+  })
+
 })
