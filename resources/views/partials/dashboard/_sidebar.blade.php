@@ -2,15 +2,15 @@
 
   <div class="logo">
 
-    <a href="{{ route('dashboard.index') }}" class="simple-text logo-mini">
-      <div class="logo-image-small">
+    <a href="{{ route('dashboard.user.profile') }}" class="simple-text logo-mini">
+      <div class="logo-image-small pt-3">
         <img src="{{ asset('images/dashboard/logo-small.png') }}">
       </div>
     </a>
 
-    <a href="{{ route('dashboard.index') }}" class="simple-text logo-normal">
+    <a href="{{ route('dashboard.user.profile') }}" class="simple-text logo-normal">
 
-      Nome
+      <span class="small">{{ Auth::user()->name }}<br>{{ Auth::user()->profile->name }}</span>
 
     </a>
 
@@ -25,15 +25,6 @@
         <a href="{{ route('dashboard.index') }}">
           <i class="nc-icon nc-bank"></i>
           <p>Início</p>
-        </a>
-
-      </li>
-
-      <li @if (url()->current() == route('dashboard.user.profile')) class="active" @endif>
-
-        <a href="{{ route('dashboard.user.profile') }}">
-          <i class="nc-icon nc-single-02"></i>
-          <p>Perfil</p>
         </a>
 
       </li>
@@ -56,9 +47,9 @@
 
       </li>
 
-      <li @if (url()->current() == route('users.register')) class="active" @endif>
+      <li @if (url()->current() == route('users.register.page')) class="active" @endif>
 
-        <a href="{{ route('users.register') }}">
+        <a href="{{ route('users.register.page') }}">
           <i class="nc-icon nc-single-02"></i>
           <p>Cadastrar usuário</p>
         </a>
@@ -70,6 +61,15 @@
         <a href="{{ route('category.register.page') }}">
           <i class="nc-icon nc-single-02"></i>
           <p>Cadastrar categoria</p>
+        </a>
+
+      </li>
+
+      <li @if (url()->current() == route('product.register.page')) class="active" @endif>
+
+        <a href="{{ route('product.register.page') }}">
+          <i class="nc-icon nc-single-02"></i>
+          <p>Cadastrar produto</p>
         </a>
 
       </li>

@@ -38,7 +38,7 @@
                     <tbody>
 
                       @foreach ($categories as $category)
-                          
+
                         <tr>
                           <td class="text-center">
                             {{ $category->id }}
@@ -53,7 +53,7 @@
                               <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $category->id }}" data-name="{{ $category->name }}" data-slug="{{ $category->slug_name }}" data-toggle="modal" data-target="#updateCategoryModal"><i class="fas fa-edit"></i></button>
                               <button type="button" id="delete-category" class="btn btn-danger btn-round"><i class="fas fa-trash"></i></button>
                           </td>
-                          
+
                         </tr>
 
                       @endforeach
@@ -75,7 +75,7 @@
         <div class="row pt-2">
 
           <div class="col d-flex justify-content-center">
-            
+
             {{ $categories->links() }}
 
           </div>

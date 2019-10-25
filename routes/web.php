@@ -35,7 +35,7 @@ Route::group(['prefix' => '/'], function () {
     });
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('register', 'UserController@register')->name('users.register');
+        Route::get('register', 'UserController@register')->name('users.register.page');
         Route::post('', 'UserController@store')->name('users.store');
     });
 
@@ -55,6 +55,12 @@ Route::group(['prefix' => '/'], function () {
         Route::post('', 'CategoriesController@store')->name('category.store');
         Route::post('update', 'CategoriesController@update')->name('category.update');
         Route::get('by-id/{id}', 'CategoriesController@getCategory')->name('category.get');
+
+    });
+
+    Route::group(['prefix' => 'products'], function () {
+
+        Route::get('register', 'ProductsController@register')->name('product.register.page');
 
     });
 

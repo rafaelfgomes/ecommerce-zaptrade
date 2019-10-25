@@ -3,9 +3,9 @@
   <div class="modal-dialog" role="document">
 
     <div class="modal-content">
-      
+
       <div class="modal-header">
-        
+
         <h5 class="modal-title" id="updateCategoryModalLabel">Atualizar categoria</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -13,9 +13,9 @@
       </div>
 
       <div class="modal-body">
-        
+
         <form>
-          
+
             <div class="row">
 
                 <div class="col-md-6 pr-1">
@@ -42,23 +42,13 @@
 
               </div>
 
-              <div class="row pt-3">
-
-                <input type="hidden" id="category-id" name="category-id">
-                
-                <div class="update ml-auto mr-auto">
-                  <button type="button" id="update-category" class="btn btn-primary btn-round">Atualizar categoria</button>
-                </div>
-
-              </div>
-
         </form>
 
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" id="button-update" class="btn btn-primary">Atualizar</button>
+        <button type="button" id="button-update" data-dismiss="modal" class="btn btn-primary">Atualizar</button>
       </div>
     </div>
 
