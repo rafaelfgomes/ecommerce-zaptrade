@@ -27,13 +27,6 @@ class DashboardController extends Controller
     public function index()
     {
 
-        return view('pages.dashboard.index')->with([]);
-
-    }
-
-    public function profile()
-    {
-
         return view('pages.dashboard.users.profile')->with([
             'user' => Auth::user(),
             'profiles' => Profile::all(),
@@ -51,7 +44,7 @@ class DashboardController extends Controller
         return view('pages.dashboard.products.index')->with([
 
             'products' => $products
-        
+
         ]);
 
     }

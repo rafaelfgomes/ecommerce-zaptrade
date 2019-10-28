@@ -14,7 +14,7 @@ class UserController extends Controller
 
     public function register()
     {
-        
+
         $profileId = Auth::user()->profile->id;
 
         return view('pages.dashboard.users.register')->with([
@@ -23,7 +23,7 @@ class UserController extends Controller
         ]);
 
     }
-    
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -37,7 +37,7 @@ class UserController extends Controller
         $validated = $request->validated();
 
         if ($validated) {
-            
+
             $params = [
 
                 'name' => $request->name,
@@ -46,7 +46,7 @@ class UserController extends Controller
                 'profile_id' => $request->profile_id
 
             ];
-            
+
             $user = User::create($params);
 
         }
@@ -55,9 +55,43 @@ class UserController extends Controller
 
     }
 
-    public function update(UserUpdateRequest $request)
+    public function update(UserUpdateRequest $request, $id)
     {
-        # code...
+
+        // Retrieve the validated input data
+        $validated = $request->validated();
+
+        if ($validated) {
+
+            $user = User::find($id);
+
+            if (Hash::check($request->input('password'), $user->password)) {
+
+                $params = [
+
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->input('new-password')),
+                    'profile_id' => $request->input('user-profile-id')
+
+                ];
+
+                $user->update($params);
+
+                return response()->json([ 'user' => $user ]);
+
+            } else {
+
+                return response()->json([ 'message' => 'Senha anterior não confere' ], 400);
+
+            }
+
+
+
+        }
+
+        return response()->json([ 'message' => 'Não foi possível atualizar o usuário' ]);
+
     }
 
 }

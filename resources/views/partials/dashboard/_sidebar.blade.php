@@ -2,13 +2,13 @@
 
   <div class="logo">
 
-    <a href="{{ route('dashboard.user.profile') }}" class="simple-text logo-mini">
+    <a href="{{ route('dashboard.index') }}" class="simple-text logo-mini">
       <div class="logo-image-small pt-3">
         <img src="{{ asset('images/dashboard/logo-small.png') }}">
       </div>
     </a>
 
-    <a href="{{ route('dashboard.user.profile') }}" class="simple-text logo-normal">
+    <a href="{{ route('dashboard.index') }}" class="simple-text logo-normal">
 
       <span class="small">{{ Auth::user()->name }}<br>{{ Auth::user()->profile->name }}</span>
 
@@ -19,15 +19,6 @@
   <div class="sidebar-wrapper">
 
     <ul class="nav">
-
-      <li @if (url()->current() == route('dashboard.index')) class="active" @endif>
-
-        <a href="{{ route('dashboard.index') }}">
-          <i class="nc-icon nc-bank"></i>
-          <p>Início</p>
-        </a>
-
-      </li>
 
       <li @if (url()->current() == route('dashboard.products.page')) class="active" @endif>
 

@@ -61,7 +61,7 @@
 
               <div class="card-body">
 
-                <form>
+                <form id="update-user-form">
 
                   <div class="row">
 
@@ -70,7 +70,7 @@
                       <div class="form-group">
 
                         <label>Nome</label>
-                        <input type="text" class="form-control" placeholder="Nome" value="{{ $user->name }}">
+                        <input type="text" id="user-name" name="name" class="form-control" placeholder="Nome" value="{{ $user->name }}" required>
 
                       </div>
 
@@ -81,7 +81,7 @@
                       <div class="form-group">
 
                         <label>E-mail</label>
-                        <input type="text" class="form-control" placeholder="E-mail" value="{{ $user->email }}">
+                        <input type="text" id="user-email" name="email" class="form-control" placeholder="E-mail" value="{{ $user->email }}" required>
 
                       </div>
 
@@ -96,7 +96,7 @@
                       <div class="form-group">
 
                         <label>Senha atual</label>
-                        <input type="password" class="form-control" placeholder="Senha atual">
+                        <input type="password" id="user-password" name="password" class="form-control" placeholder="Senha atual" required>
 
                       </div>
 
@@ -107,7 +107,7 @@
                       <div class="form-group">
 
                         <label>Nova senha</label>
-                        <input type="password" class="form-control" placeholder="Nova senha">
+                        <input type="password" id="user-new-password" name="new-password" class="form-control" placeholder="Nova senha" required>
 
                       </div>
 
@@ -122,8 +122,7 @@
                       <div class="form-group">
 
                         <label>Perfil</label>
-                        <select class="custom-select" id="user-profile-id" name="user-profile-id" id="inputGroupSelectProfile"
-                        @if ($userProfileId > 1) disabled @endif>
+                        <select class="custom-select" id="user-profile-id" name="user-profile-id" @if ($userProfileId > 1) disabled @endif>
 
                             <option value="0" selected>Escolha o perfil</option>
                             @foreach ($profiles as $profile)
@@ -151,7 +150,9 @@
                   <div class="row pt-2">
 
                     <div class="update ml-auto mr-auto">
-                      <button type="button" class="btn btn-primary btn-round">Atualizar dados</button>
+                      <input type="hidden" id="url" value="{{ url('/') }}">
+                      <input type="hidden" name="user-id" id="user-id" value="{{ Auth::user()->id }}">
+                      <button type="button" id="update-user" class="btn btn-primary btn-round">Atualizar dados</button>
                     </div>
 
                   </div>

@@ -82,7 +82,7 @@
 
         </div>
 
-        @include('pages.components.dashboard.update-modal')
+        @include('pages.components.dashboard.update-category-modal')
 
       </div>
 

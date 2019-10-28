@@ -29,20 +29,20 @@ Route::group(['prefix' => '/'], function () {
 
     Route::group([ 'prefix' => 'auth' ], function () {
 
-        Route::get('admin', 'PagesController@adminLogin')->name('admin.login.page');
-        Route::post('admin', 'Auth\LoginController@login')->name('admin.login');
+        Route::get('dashboard', 'PagesController@login')->name('dashboard.login.page');
+        Route::post('dashboard', 'Auth\LoginController@login')->name('dashboard.login');
 
     });
 
     Route::group(['prefix' => 'users'], function () {
         Route::get('register', 'UserController@register')->name('users.register.page');
         Route::post('', 'UserController@store')->name('users.store');
+        Route::post('update/{id}', 'UserController@update')->name('users.update');
     });
 
     Route::group([ 'prefix' => 'dashboard' ], function () {
 
         Route::get('', 'DashboardController@index')->name('dashboard.index');
-        Route::get('users/profile', 'DashboardController@profile')->name('dashboard.user.profile');
         Route::get('products', 'DashboardController@products')->name('dashboard.products.page');
         Route::get('categories', 'DashboardController@categories')->name('dashboard.categories.page');
 

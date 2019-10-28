@@ -42,7 +42,7 @@ class LoginController extends Controller
     {
 
         $this->middleware('guest')->except('logout');
-    
+
     }
 
     public function login(LoginRequest $request)
@@ -56,9 +56,9 @@ class LoginController extends Controller
             $password = $request->input('password');
             $profileId = intval($request->input('profile-id'));
 
-            $user = ($profileId == 1) ? Admin::where('email', $email)->first() : User::where('email', $email)->first();
+            $user = User::where('email', $email)->where('profile_id', $profileId)->first();
 
-            if ($user) {
+            if (!is_null($user)) {
 
                 if (Hash::check($password, $user->password)) {
 
@@ -66,24 +66,24 @@ class LoginController extends Controller
 
                     Auth::login($user);
 
-                    return redirect()->route('dashboard.index');
+                    return response()->json([ 'url' => route('dashboard.user.profile') ]);
 
                 } else {
 
-                    return redirect()->route('admin.login.page');
+                    return response()->json([ 'message' => 'Usuário ou senha inválidos' ], 400);
 
                 }
-                
+
 
             } else {
 
                 if ($profileId == 1) {
 
-                    return redirect()->route('admin.login.page');
-                
+                    return response()->json([ 'message' => 'Gerente não cadastrado' ], 404);
+
                 }
 
-                return redirect()->route('admin.login.page');
+                return response()->json([ 'message' => 'Vendedor não cadastrado' ], 404);
 
             }
 

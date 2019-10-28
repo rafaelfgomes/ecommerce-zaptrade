@@ -3,8 +3,41 @@ $(document).ready(function () {
   //Máscara de dinheiro para o input
   $('#product-price').maskMoney();
 
+  //Toastr options
   toastr.options.closeButton = true;
   toastr.options = { positionClass: 'toast-top-center' };
+
+  //Logar usuário
+  $('#login-user').on('click', function () {
+
+    let url = $('#url').val() + '/auth/dashboard'
+
+    let data = new FormData($('#login-dashboard-form')[0])
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType:'json',
+      type:'POST',
+      processData: false,
+      contentType: false,
+      success: function (response){
+
+        $('#user-email').val('')
+        $('#user-password').val('')
+        $('#profile-id').val(0)
+
+        window.location.replace(response.url)
+
+      },
+      error: function (error) {
+
+        toastr.error(error.responseJSON.message, 'Erro ao realizar o login')
+
+      }
+    })
+
+  })
 
   //Seleção e preview das images do produto
   $("#product-images").on("change", function() {
@@ -14,11 +47,11 @@ $(document).ready(function () {
     var str = ''
 
     $.each(files, function (index, element) {
-      
+
       if (index == 0) {
-        
+
         str = '"' + element.name + '"';
-        
+
       } else {
 
         str = str + '; ' + '"' + element.name + '"';
@@ -31,7 +64,7 @@ $(document).ready(function () {
     })
 
     label.html(str)
-    
+
   });
 
   //Cadastrar categoria
@@ -109,13 +142,6 @@ $(document).ready(function () {
   //Cadastrar produto
   $('#product-store').on('click', function () {
 
-    /*
-    var name = $('#product-name').val()
-    var price = $('#product-price').val().replace('R$ ', '').replace(',', '.')
-    var description = $('#product-description').val()
-    var images = $("#product-images")[0].files
-    */
-
     let url = $('#url').val() + '/products'
 
     let data = new FormData($('#store-product-form')[0])
@@ -129,7 +155,7 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function(response){
-        
+
         toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
           timeOut: 2000,
           fadeOut: 2000,
@@ -145,7 +171,7 @@ $(document).ready(function () {
 
       },
       error: function (error) {
-        
+
         toastr.error(error, 'Erro ao cadastrar o produto')
 
       }
@@ -169,12 +195,12 @@ $(document).ready(function () {
         $('#product-name').val('')
         $('#product-price').val('')
         $('#product-description').val('')
-        
+
 
       })
       .fail(function(error) {
 
-        
+
 
       })
 
@@ -241,6 +267,52 @@ $(document).ready(function () {
 
   })
 
-  
+  $('#update-user').on('click', function () {
+
+    var userId = $('#user-id').val()
+
+    let url = $('#url').val() + '/users/update/' + userId
+
+    let data = new FormData($('#update-user-form')[0])
+    var selectedProfile = $('#user-profile-id').val()
+
+    data.append('user-profile-id', selectedProfile)
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType:'json',
+      type:'POST',
+      processData: false,
+      contentType: false,
+      success: function (response){
+
+        $('#user-password').val('')
+        $('#user-new-password').val('')
+        $('#user-profile-id').val(response.profile_id)
+
+        toastr.success('Usuário ' + response.user.name + ' atualizado com sucesso!', 'Usuário atualizado', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+
+            window.location.reload();
+
+          }
+
+        })
+
+      },
+      error: function (error) {
+
+        toastr.error(error.responseJSON.message, 'Erro ao atualizar o usuário')
+
+      }
+
+    })
+
+  })
+
+
 
 })

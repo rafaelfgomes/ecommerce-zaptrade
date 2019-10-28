@@ -49,32 +49,32 @@ class ProductsController extends Controller
         if ($product) {
 
             if ($request->has('product-images')) {
-            
+
                 foreach ($request->file('product-images') as $key => $image) {
-    
+
                     $img = Img::make($image);
                     $name = $image->getClientOriginalName();
                     $extension = $image->getExtension();
-    
+
                     $fileName = $name.$extension;
-                    $dbPath = $category->slug_name.'/';
+                    $dbPath = 'images/'.$category->slug_name.'/';
                     $path = public_path($dbPath.$fileName);
-    
+
                     $img->save($path);
-    
+
                     $imgData = [
                         'name' => $name,
                         'path' => $dbPath,
                         'product_id' => $product->id
                     ];
-    
+
                     ImageModel::create($imgData);
-    
+
                 }
-    
+
             }
 
-            DB::table('product_user')->insert([ 
+            DB::table('product_user')->insert([
                 'product_id' => $product->id,
                 'user_id' => Auth::user()->id
             ]);
