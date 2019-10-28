@@ -24,79 +24,53 @@
 
               <div class="card-body">
 
-                <div class="table-responsive">
+                @if (count($products) > 0)
 
-                  <table class="table">
+                  <div class="table-responsive">
 
-                    <thead class="text-primary">
-                      <th class="text-center">#</th>
-                      <th>Produto</th>
-                      <th>Categoria</th>
-                      <th>Aprovado?</th>
-                      <th class="text-right">Valor</th>
-                    </thead>
+                    <table class="table">
+  
+                      <thead class="text-primary">
+                        <th class="text-center">#</th>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Ações</th>
+                      </thead>
+  
+                      <tbody>
+  
+                        @foreach ($products as $product)
+  
+                          <tr>
+                            <td class="text-center">
+                              1
+                            </td>
+                            <td>
+                              {{ $product->name }}
+                            </td>
+                            <td>
+                              {{ $product->category->name }}
+                            </td>
+                            <td class="text-center">
+                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}" data-description="{{ $product->description }}" data-active="{{ $product->is_approoved }}" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-edit"></i></button>
+                              <button type="button" id="delete-product" class="btn btn-danger btn-round"><i class="fas fa-times"></i></button>
+                            </td>
+                            
+                          </tr>
+                            
+                        @endforeach
+  
+                      </tbody>
+  
+                    </table>
+  
+                  </div>
+                    
+                @else
 
-                    <tbody>
-
-                      <tr>
-                        <td class="text-center">
-                          1
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                          $36,738
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="text-center">
-                          2
-                        </td>
-                        <td>
-                          Curaçao
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Sinaai-Waas
-                        </td>
-                        <td class="text-right">
-                          $23,789
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td class="text-center">
-                          3
-                        </td>
-                        <td>
-                          Netherlands
-                        </td>
-                        <td>
-                          Niger
-                        </td>
-                        <td>
-                          Baileux
-                        </td>
-                        <td class="text-right">
-                          $56,142
-                        </td>
-                      </tr>
-
-                    </tbody>
-
-                  </table>
-
-                </div>
+                  <p class="h3 text-center pt-5">Não há produtos cadastrados.<br>Realize os cadastros <a href="{{ route('product.register.page') }}">nesta página</a></p>
+                    
+                @endif
 
               </div>
 

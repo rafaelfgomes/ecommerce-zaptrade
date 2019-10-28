@@ -46,7 +46,13 @@ class DashboardController extends Controller
     public function products()
     {
 
-        return view('pages.dashboard.products.index')->with([]);
+        $products = [];
+
+        return view('pages.dashboard.products.index')->with([
+
+            'products' => $products
+        
+        ]);
 
     }
 

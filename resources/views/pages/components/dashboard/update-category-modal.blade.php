@@ -48,7 +48,7 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" id="button-update" data-dismiss="modal" class="btn btn-primary">Atualizar</button>
+        <button type="button" id="update-category" data-dismiss="modal" class="btn btn-primary">Atualizar</button>
       </div>
     </div>
 

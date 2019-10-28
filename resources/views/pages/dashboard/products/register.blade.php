@@ -19,102 +19,78 @@
             <div class="card card-user">
 
               <div class="card-header">
+
                 <h5 class="card-title">Cadastrar novo produto</h5>
+              
               </div>
 
               <div class="card-body">
 
-                <form>
+                <form id="store-product-form" enctype="multipart/form-data">
 
                   <div class="row">
-
-                    <div class="col-md-5 pr-1">
-
-                      <div class="form-group">
-                        <label>Company (disabled)</label>
-                        <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-3 px-1">
-
-                      <div class="form-group">
-                        <label>Username</label>
-                        <input type="text" class="form-control" placeholder="Username" value="michael23">
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4 pl-1">
-
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" placeholder="Email">
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                  <div class="row">
+                    
                     <div class="col-md-6 pr-1">
+                    
                       <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" placeholder="Company" value="Chet">
+                        <label>Nome do produto</label>
+                        <input type="text" id="product-name" name="product-name" class="form-control" placeholder="Digite o nome do produto">
                       </div>
+                    
                     </div>
+
                     <div class="col-md-6 pl-1">
+                    
                       <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" placeholder="Last Name" value="Faker">
+                        <label>Preço</label>
+                        {{-- <input type="text" id="product-price" name="product-price" class="form-control" placeholder="Digite o preço"> --}}
+                        <input type="text" id="product-price" name="product-price" class="form-control" data-affixes-stay="true" data-prefix="R$ " data-thousands="." data-decimal=","  placeholder="Digite o preço"/>
                       </div>
+                    
                     </div>
+                  
                   </div>
 
                   <div class="row">
+                  
                     <div class="col-md-12">
+                  
                       <div class="form-group">
-                        <label>Address</label>
-                        <input type="text" class="form-control" placeholder="Home Address" value="Melbourne, Australia">
+
+                        <label>Descrição</label>
+                        <textarea id="product-description" name="product-description" class="form-control textarea"></textarea>
                       </div>
+                  
                     </div>
+                  
                   </div>
 
                   <div class="row">
-                    <div class="col-md-4 pr-1">
-                      <div class="form-group">
-                        <label>City</label>
-                        <input type="text" class="form-control" placeholder="City" value="Melbourne">
-                      </div>
-                    </div>
-                    <div class="col-md-4 px-1">
-                      <div class="form-group">
-                        <label>Country</label>
-                        <input type="text" class="form-control" placeholder="Country" value="Australia">
-                      </div>
-                    </div>
-                    <div class="col-md-4 pl-1">
-                      <div class="form-group">
-                        <label>Postal Code</label>
-                        <input type="number" class="form-control" placeholder="ZIP Code">
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
+                    
                     <div class="col-md-12">
+
                       <div class="form-group">
-                        <label>About Me</label>
-                        <textarea class="form-control textarea">Oh so, your weak rhyme You doubt I'll bother, reading into it</textarea>
+
+                        <label>Imagens do produto</label>
+                        <div class="custom-file">
+                          <input type="file" accept="image/*" name="product-images[]" class="custom-file-input" id="product-images" multiple>
+                          <label class="custom-file-label" for="product-images">Selecione os arquivos</label>
+                          
+                        </div>
+                        <div id="images-preview" class="border rounded d-none"></div>
+
                       </div>
+
                     </div>
+                  
                   </div>
 
                   <div class="row">
-                    <div class="update ml-auto mr-auto">
-                      <button type="submit" class="btn btn-primary btn-round">Update Profile</button>
+
+                    <div class="ml-auto mr-auto">
+                      <button type="button" id="product-store" name="product-store" class="btn btn-primary btn-round">Cadastrar produto</button>
                     </div>
+                  
                   </div>
 
                 </form>

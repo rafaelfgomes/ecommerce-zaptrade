@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRegisterRequest;
-use App\Profile;
 use App\User;
+use App\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -29,7 +30,7 @@ class UserController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    public function store(UserRegisterRequest $request)
+    public function store(UserStoreRequest $request)
     {
 
         // Retrieve the validated input data
@@ -54,7 +55,7 @@ class UserController extends Controller
 
     }
 
-    public function update(Type $var = null)
+    public function update(UserUpdateRequest $request)
     {
         # code...
     }

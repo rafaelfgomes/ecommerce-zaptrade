@@ -10,4 +10,6 @@
 <script src="{{ asset('js/select2.full.min.js') }}" defer></script>
 <script src="{{ asset('js/toastr.min.js') }}" defer></script>
 <script src="{{ asset('js/moment.min.js') }}" defer></script>
+<script src="{{ asset('js/image-uploader.min.js') }}" defer></script>
+<script src="{{ asset('js/maskmoney.min.js') }}" defer></script>
 <script src="{{ asset('js/custom.js') }}" defer></script>
