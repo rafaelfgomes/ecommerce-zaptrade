@@ -66,7 +66,7 @@ class LoginController extends Controller
 
                     Auth::login($user);
 
-                    return response()->json([ 'url' => route('dashboard.user.profile') ]);
+                    return response()->json([ 'url' => route('dashboard.index') ]);
 
                 } else {
 
