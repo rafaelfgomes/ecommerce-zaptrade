@@ -24,7 +24,7 @@ class Product extends Model
     public function images()
     {
         
-        return $this->belongsTo('App\Image');
+        return $this->hasMany('App\Image');
 
     }
 
@@ -32,13 +32,6 @@ class Product extends Model
     {
         
         return $this->belongsToMany('App\User');
-
-    }
-
-    public function admins()
-    {
-        
-        return $this->belongsToMany('App\Admins');
 
     }
 

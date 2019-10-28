@@ -109,10 +109,12 @@ $(document).ready(function () {
   //Cadastrar produto
   $('#product-store').on('click', function () {
 
+    /*
     var name = $('#product-name').val()
     var price = $('#product-price').val().replace('R$ ', '').replace(',', '.')
     var description = $('#product-description').val()
-    var images = $("#product-images")[0].files  
+    var images = $("#product-images")[0].files
+    */
 
     let url = $('#url').val() + '/products'
 
@@ -128,7 +130,7 @@ $(document).ready(function () {
       contentType: false,
       success: function(response){
         
-        toastr.success('Produto ' + response.user.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
+        toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
           timeOut: 2000,
           fadeOut: 2000,
           onHidden: function () {
@@ -139,6 +141,7 @@ $(document).ready(function () {
         $('#product-name').val('')
         $('#product-price').val('')
         $('#product-description').val('')
+        $('#category-id').val(0)
 
       },
       error: function (error) {

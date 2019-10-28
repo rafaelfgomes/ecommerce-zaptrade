@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->decimal('price', 10);
             $table->string('description', 180);
             $table->char('is_approved', 1);
+            $table->bigInteger('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();
         });
