@@ -9,10 +9,12 @@
     </a>
 
     <a href="{{ route('dashboard.index') }}" class="simple-text logo-normal">
-
       <span class="small">{{ Auth::user()->name }}<br>{{ Auth::user()->profile->name }}</span>
-
     </a>
+
+    <form action="{{ route('dashboard.logout') }}" method="POST">
+      <span><button type="button" id="logout" class="btn btn-primary btn-round">Sair</button></span>
+    </form>
 
   </div>
 

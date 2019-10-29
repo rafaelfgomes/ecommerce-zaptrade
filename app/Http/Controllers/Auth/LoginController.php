@@ -99,7 +99,7 @@ class LoginController extends Controller
      */
     public function logout(Request $request)
     {
-        
+
         Auth::guard()->logout();
         $request->session()->invalidate();
         return route('dashboard.login.page');
