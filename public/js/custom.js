@@ -150,7 +150,6 @@ $(document).ready(function () {
       url: url,
       data: data,
       dataType:'json',
-      async:false,
       type:'POST',
       processData: false,
       contentType: false,

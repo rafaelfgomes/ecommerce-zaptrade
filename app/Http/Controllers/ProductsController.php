@@ -6,6 +6,7 @@ use App\Product;
 use App\Category;
 use App\Image as ImageModel;
 use App\Http\Requests\ProductStoreRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Img;
@@ -36,9 +37,13 @@ class ProductsController extends Controller
 
         $category = Category::find($request->input('category-id'));
 
+        $price = str_replace('R$ ', '', $request->input('product-price'));
+        $price = str_replace('.', '',$price);
+        $price = str_replace(',', '.', $price);
+
         $data = [
             'name' => $request->input('product-name'),
-            'price' => $request->input('product-price'),
+            'price' => $price,
             'description' => $request->input('product-description'),
             'category_id' => $request->input('category-id'),
             'is_approved' => 0
@@ -58,6 +63,11 @@ class ProductsController extends Controller
 
                     $fileName = $name.$extension;
                     $dbPath = 'images/'.$category->slug_name.'/';
+                    if (!file_exists(base_path() . '/public' . '/' . $dbPath)) {
+                        
+                        mkdir(base_path() . '/public' . '/' . $dbPath);
+
+                    }
                     $path = public_path($dbPath.$fileName);
 
                     $img->save($path);
@@ -76,7 +86,9 @@ class ProductsController extends Controller
 
             DB::table('product_user')->insert([
                 'product_id' => $product->id,
-                'user_id' => Auth::user()->id
+                'user_id' => Auth::user()->id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
 
         }

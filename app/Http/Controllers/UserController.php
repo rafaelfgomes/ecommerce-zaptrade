@@ -65,28 +65,40 @@ class UserController extends Controller
 
             $user = User::find($id);
 
-            if (Hash::check($request->input('password'), $user->password)) {
-
+            if (is_null($request->input('password'))) {
                 $params = [
 
                     'name' => $request->input('name'),
                     'email' => $request->input('email'),
-                    'password' => Hash::make($request->input('new-password')),
                     'profile_id' => $request->input('user-profile-id')
 
                 ];
 
-                $user->update($params);
-
-                return response()->json([ 'user' => $user ]);
-
             } else {
 
-                return response()->json([ 'message' => 'Senha anterior não confere' ], 400);
+                if (Hash::check($request->input('password'), $user->password)) {
+
+                    $params = [
+    
+                        'name' => $request->input('name'),
+                        'email' => $request->input('email'),
+                        'password' => Hash::make($request->input('new-password')),
+                        'profile_id' => $request->input('user-profile-id')
+    
+                    ];
+    
+                } else {
+    
+                    return response()->json([ 'message' => 'Senha atual não confere' ], 400);
+    
+                }
 
             }
 
-
+            
+            $user->update($params);
+    
+            return response()->json([ 'user' => $user ]);
 
         }
 

@@ -31,6 +31,7 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('dashboard', 'PagesController@login')->name('dashboard.login.page');
         Route::post('dashboard', 'Auth\LoginController@login')->name('dashboard.login');
+        Route::post('logout', 'Auth\LoginController@logout')->name('dashboard.logout');
 
     });
 
@@ -62,6 +63,7 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('register', 'ProductsController@register')->name('product.register.page');
         Route::post('', 'ProductsController@store')->name('product.store');
+        Route::post('update/{id}', 'ProductsController@update')->name('product.update');
 
     });
 

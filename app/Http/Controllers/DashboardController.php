@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use App\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,11 +40,18 @@ class DashboardController extends Controller
     public function products()
     {
 
-        $products = [];
+        $products = Product::with(['images', 'category', 'users'])->get();
+
+        if (Auth::user()->profile->id > 1) {
+            $products = $products->filter(function ($value) {
+                return $value->users[0]->id == Auth::user()->id;
+            });
+        }
 
         return view('pages.dashboard.products.index')->with([
 
-            'products' => $products
+            'products' => $products,
+            'categories' => Category::all()
 
         ]);
 

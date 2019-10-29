@@ -28,11 +28,8 @@ class PagesController extends Controller
     public function index()
     {
 
-        return view('pages.dashboard.users.profile')->with([
-            'categories' => Category::all(),
-            'profiles' => Profile::all(),
-            'userProfileName' => Auth::user()->profile->name,
-            'userProfileId' => Auth::user()->profile->id
+        return view('index')->with([
+            'categories' => Category::all()
         ]);
 
     }

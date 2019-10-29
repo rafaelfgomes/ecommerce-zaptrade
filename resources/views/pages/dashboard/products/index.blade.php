@@ -31,10 +31,9 @@
                     <table class="table">
   
                       <thead class="text-primary">
-                        <th class="text-center">#</th>
                         <th>Produto</th>
                         <th>Categoria</th>
-                        <th>Ações</th>
+                        <th class="text-center">Ações</th>
                       </thead>
   
                       <tbody>
@@ -42,18 +41,20 @@
                         @foreach ($products as $product)
   
                           <tr>
-                            <td class="text-center">
-                              1
-                            </td>
                             <td>
-                              {{ $product->name }}
+                              <img src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="" width="30" height="30">&nbsp;{{ $product->name }}
                             </td>
                             <td>
                               {{ $product->category->name }}
                             </td>
                             <td class="text-center">
                               <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}" data-description="{{ $product->description }}" data-active="{{ $product->is_approoved }}" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-edit"></i></button>
-                              <button type="button" id="delete-product" class="btn btn-danger btn-round"><i class="fas fa-times"></i></button>
+                              @if (Auth::user()->profile->id == 1)
+                              
+                                <button type="button" id="delete-product" class="btn btn-danger btn-round" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-times"></i></button>
+
+                              @endif
+                              
                             </td>
                             
                           </tr>
@@ -79,6 +80,8 @@
           </div>
 
         </div>
+
+        @include('pages.components.dashboard.update-product-modal')
 
       </div>
 
