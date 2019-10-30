@@ -112,7 +112,17 @@ $(document).ready(function () {
     $.post(url, { name: name, email: email, password: pass, profile_id: profileId })
       .done(function(response) {
 
-        toastr.success('Usuário ' + response.user.name + ' cadastrado com sucesso!', 'Usuário cadastrado', {
+        if (response.user.profile_id == 1) {
+
+          var userType = 'Gerente'
+
+        } else {
+          
+          var userType = 'Vendedor'
+
+        }
+
+        toastr.success(userType + ' ' + response.user.name + ' cadastrado com sucesso!', userType + ' cadastrado', {
           timeOut: 2000,
           fadeOut: 2000,
           onHidden: function () {
@@ -310,6 +320,6 @@ $(document).ready(function () {
 
     })
 
-  })
+  })  
 
 })

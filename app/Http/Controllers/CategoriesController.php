@@ -12,12 +12,12 @@ class CategoriesController extends Controller
     public function show($name)
     {
 
-        $products = [];
+        $categories = Category::where('slug_name', $name)->with('products.images')->paginate(1);
 
         return view('pages.ecommerce.categories.show')->with([
             'categories' => Category::all(),
             'selected' => Category::where('slug_name', $name)->first('name'),
-            'products' => $products
+            'categoriesFilter' => $categories
         ]);
 
     }
