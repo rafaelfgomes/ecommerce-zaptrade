@@ -30,9 +30,77 @@
 
             <div class="row">
 
-                <div class="col-lg-6 mb-5 ftco-animate">
+                <div class="col-lg-6 mb-5">
 
-                    <a href="{{ asset($product->images[0]->path.$product->images[0]->name) }}" class="image-popup"><img src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" class="img-fluid" alt="{{ $product->name }}"></a>
+                    <div id="carouselProductImages" class="carousel slide" data-ride="carousel">
+
+                        <ol class="carousel-indicators">
+
+                            @foreach (range(0, ($imagesNumber - 1)) as $num)
+
+                                @if ($num == 0)
+
+                                    <li data-target="#carouselProductImages" data-slide-to="0" class="active"></li>
+
+                                @else
+
+                                    <li data-target="#carouselProductImages" data-slide-to="{{ $num }}"></li>
+
+                                @endif
+
+                            @endforeach
+
+                        </ol>
+
+                        <div class="carousel-inner">
+
+                            @foreach ($product->images as $key => $image)
+
+                                @if ($key == 0)
+
+                                    <div class="carousel-item active">
+
+                                        <a href="{{ asset($image->path.$image->name) }}" class="image-popup">
+
+                                            <img src="{{ asset($image->path.$image->name) }}" class="d-block w-100 img-fluid" alt="{{ $image->name }}">
+
+                                        </a>
+
+                                    </div>
+
+                                @else
+
+                                    <div class="carousel-item">
+
+                                        <a href="{{ asset($image->path.$image->name) }}" class="image-popup">
+
+                                            <img src="{{ asset($image->path.$image->name) }}" class="d-block w-100 img-fluid" alt="{{ $image->name }}">
+
+                                        </a>
+
+                                    </div>
+
+                                @endif
+
+                            @endforeach
+
+                        </div>
+
+                        <a class="carousel-control-prev" href="#carouselProductImages" role="button" data-slide="prev">
+
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+
+                        </a>
+
+                        <a class="carousel-control-next" href="#carouselProductImages" role="button" data-slide="next">
+
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+
+                        </a>
+
+                    </div>
 
                 </div>
 

@@ -14,12 +14,12 @@
 
             <div class="col-md-8">
 
-              <form action="#" class="subscribe-form">
+              <form class="subscribe-form">
 
                 <div class="form-group d-flex">
 
                   <input type="text" class="form-control" placeholder="Digite seu e-mail">
-                  <input type="submit" value="Assinar" class="submit px-3">
+                  <input type="button" id="send-newsletter" value="Assinar" class="submit px-3">
 
                 </div>
 

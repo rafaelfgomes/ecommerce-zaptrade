@@ -10,18 +10,15 @@ use App\Product;
 class CategoriesController extends Controller
 {
 
-    public function show($name)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
 
-        $category = Category::where('slug_name', $name)->first();
-
-        $products = Product::where('category_id', $category->id)->where('is_approved', 1)->with('images')->paginate(4);
-
-        return view('pages.ecommerce.categories.show')->with([
-            'categories' => Category::all(),
-            'selected' => Category::where('slug_name', $name)->first('name'),
-            'products' => $products
-        ]);
+        $this->middleware('auth');
 
     }
 
@@ -75,15 +72,6 @@ class CategoriesController extends Controller
         }
 
         return response()->json([ 'category' => $category ]) ;
-    }
-
-    public function getCategory($id)
-    {
-
-        $data = Category::where('id', $id)->first();
-
-        return response()->json([ 'data' => $data ]);
-
     }
 
 }

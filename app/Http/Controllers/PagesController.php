@@ -16,7 +16,9 @@ class PagesController extends Controller
      */
     public function __construct()
     {
+
         $this->middleware('guest');
+
     }
 
     /**
@@ -50,11 +52,55 @@ class PagesController extends Controller
 
     }
 
+    /**
+     * Show the contact page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function contact()
     {
 
         return view('pages.ecommerce.contact.form')->with([
             'categories' => Category::all()
+        ]);
+
+    }
+
+    /**
+     * Show the product product detail page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function details($id)
+    {
+
+        $product = Product::where('id', $id)->with('images')->first();
+        $countImages = count($product->images);
+
+        return view('pages.ecommerce.products.detail')->with([
+            'categories' => Category::all(),
+            'product' => $product,
+            'imagesNumber' => $countImages
+        ]);
+
+    }
+
+    /**
+     * Show the product category page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function show($name)
+    {
+
+        $category = Category::where('slug_name', $name)->first();
+
+        $products = Product::where('category_id', $category->id)->where('is_approved', 1)->with('images')->paginate(4);
+
+        return view('pages.ecommerce.categories.show')->with([
+            'categories' => Category::all(),
+            'selected' => Category::where('slug_name', $name)->first('name'),
+            'products' => $products
         ]);
 
     }

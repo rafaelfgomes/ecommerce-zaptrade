@@ -19,9 +19,15 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('contact', 'PagesController@contact')->name('contact.page');
 
+        Route::group(['prefix' => 'categories'], function () {
+
+            Route::get('{name}', 'PagesController@show')->name('category.page');
+
+        });
+
         Route::group(['prefix' => 'products'], function () {
 
-            Route::get('detail/{id}', 'ProductsController@details')->name('product.details');
+            Route::get('{id}', 'PagesController@details')->name('product.details');
 
         });
 
@@ -38,7 +44,7 @@ Route::group(['prefix' => '/'], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('register', 'UserController@register')->name('users.register.page');
         Route::post('', 'UserController@store')->name('users.store');
-        Route::post('update/{id}', 'UserController@update')->name('users.update');
+        Route::post('{id}', 'UserController@update')->name('users.update');
     });
 
     Route::group([ 'prefix' => 'dashboard' ], function () {
@@ -52,10 +58,8 @@ Route::group(['prefix' => '/'], function () {
     Route::group([ 'prefix' => 'categories' ], function () {
 
         Route::get('register', 'CategoriesController@register')->name('category.register.page');
-        Route::get('{name}', 'CategoriesController@show')->name('category.page');
         Route::post('', 'CategoriesController@store')->name('category.store');
         Route::post('update', 'CategoriesController@update')->name('category.update');
-        Route::get('by-id/{id}', 'CategoriesController@getCategory')->name('category.get');
 
     });
 
@@ -63,7 +67,7 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('register', 'ProductsController@register')->name('product.register.page');
         Route::post('', 'ProductsController@store')->name('product.store');
-        Route::post('update/{id}', 'ProductsController@update')->name('product.update');
+        Route::post('{id}', 'ProductsController@update')->name('product.update');
 
     });
 

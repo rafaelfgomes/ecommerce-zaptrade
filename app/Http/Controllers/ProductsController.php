@@ -14,16 +14,14 @@ use Intervention\Image\Facades\Image as Img;
 class ProductsController extends Controller
 {
 
-    public function details($id)
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-
-        $product = Product::where('id', $id)->with('images')->first();
-
-        return view('pages.ecommerce.products.detail')->with([
-            'categories' => Category::all(),
-            'product' => $product
-        ]);
-
+        $this->middleware('auth');
     }
 
     public function register()

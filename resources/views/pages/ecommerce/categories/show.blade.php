@@ -36,7 +36,7 @@
 
             @foreach ($products as $product)
 
-            <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
+              <div class="col-sm-6 col-md-6 col-lg-4 ftco-animate">
 
                 <div class="product">
 

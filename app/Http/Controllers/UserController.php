@@ -12,6 +12,18 @@ use App\Http\Requests\UserUpdateRequest;
 class UserController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        $this->middleware('auth');
+
+    }
+
     public function register()
     {
 
@@ -27,8 +39,8 @@ class UserController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
-     * @return \App\User
+     * @param  \App\Http\Requests\UserStoreRequest  $request
+     * @return \Illuminate\Http\Response
      */
     public function store(UserStoreRequest $request)
     {
@@ -55,6 +67,12 @@ class UserController extends Controller
 
     }
 
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  \App\Http\Requests\UserUpdateRequest  $request
+     * @return \Illuminate\Http\Response
+     */
     public function update(UserUpdateRequest $request, $id)
     {
 
@@ -79,25 +97,25 @@ class UserController extends Controller
                 if (Hash::check($request->input('password'), $user->password)) {
 
                     $params = [
-    
+
                         'name' => $request->input('name'),
                         'email' => $request->input('email'),
                         'password' => Hash::make($request->input('new-password')),
                         'profile_id' => $request->input('user-profile-id')
-    
+
                     ];
-    
+
                 } else {
-    
+
                     return response()->json([ 'message' => 'Senha atual não confere' ], 400);
-    
+
                 }
 
             }
 
-            
+
             $user->update($params);
-    
+
             return response()->json([ 'user' => $user ]);
 
         }

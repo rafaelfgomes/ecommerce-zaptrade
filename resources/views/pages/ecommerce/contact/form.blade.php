@@ -35,7 +35,7 @@
               <p><span>Endereço:</span><br>Av. Ana Costa, 482 - cj 901 - Gonzaga, Santos - SP</p>
             </div>
         </div>
-        
+
         <div class="col-md-4 d-flex">
             <div class="info bg-white p-4">
                 <p>
@@ -53,7 +53,7 @@
         </div>
 
       </div>
-      
+
       <div class="row block-9">
 
         <div class="col-md-6 order-md-last d-flex">
@@ -67,21 +67,21 @@
                 <div class="form-group">
                 <input type="text" class="form-control" placeholder="Digite seu e-mail">
                 </div>
-                
+
                 <div class="form-group">
                 <input type="text" class="form-control" placeholder="Assunto">
                 </div>
-                
+
                 <div class="form-group">
                 <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Escreva sua mensagem para nós"></textarea>
                 </div>
-                
-                <div class="form-group">
-                <input type="submit" value="Enviar mensagem" class="btn btn-primary py-3 px-5">
+
+                <div class="form-group text-center">
+                  <input type="submit" value="Enviar mensagem" class="btn btn-primary py-3 px-5">
                 </div>
-          
+
             </form>
-        
+
         </div>
 
         <div class="col-md-6 d-flex">
