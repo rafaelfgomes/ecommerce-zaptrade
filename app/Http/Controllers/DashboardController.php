@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
 use App\Product;
 use App\Profile;
-use Illuminate\Http\Request;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller

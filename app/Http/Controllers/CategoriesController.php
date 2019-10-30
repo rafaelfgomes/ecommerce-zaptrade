@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Product;
 
 class CategoriesController extends Controller
 {
@@ -12,19 +13,21 @@ class CategoriesController extends Controller
     public function show($name)
     {
 
-        $categories = Category::where('slug_name', $name)->with('products.images')->paginate(1);
+        $category = Category::where('slug_name', $name)->first();
+
+        $products = Product::where('category_id', $category->id)->where('is_approved', 1)->with('images')->paginate(4);
 
         return view('pages.ecommerce.categories.show')->with([
             'categories' => Category::all(),
             'selected' => Category::where('slug_name', $name)->first('name'),
-            'categoriesFilter' => $categories
+            'products' => $products
         ]);
 
     }
 
     public function register()
     {
-        
+
         return view('pages.dashboard.categories.register')->with([
             'categories' => Category::all()
         ]);
@@ -70,7 +73,7 @@ class CategoriesController extends Controller
             $category->save();
 
         }
-        
+
         return response()->json([ 'category' => $category ]) ;
     }
 

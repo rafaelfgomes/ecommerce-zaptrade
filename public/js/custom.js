@@ -48,7 +48,7 @@ $(document).ready(function () {
 
     $.each(files, function (index, element) {
 
-      if (index == 0) {
+      if (index == 0 && label.length == 0) {
 
         str = '"' + element.name + '"';
 
@@ -117,7 +117,7 @@ $(document).ready(function () {
           var userType = 'Gerente'
 
         } else {
-          
+
           var userType = 'Vendedor'
 
         }
@@ -320,6 +320,6 @@ $(document).ready(function () {
 
     })
 
-  })  
+  })
 
 })

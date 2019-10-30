@@ -21,7 +21,7 @@ Route::group(['prefix' => '/'], function () {
 
         Route::group(['prefix' => 'products'], function () {
 
-            Route::get('detail', 'ProductsController@details')->name('product.details');
+            Route::get('detail/{id}', 'ProductsController@details')->name('product.details');
 
         });
 

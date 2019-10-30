@@ -14,11 +14,14 @@ use Intervention\Image\Facades\Image as Img;
 class ProductsController extends Controller
 {
 
-    public function details()
+    public function details($id)
     {
 
+        $product = Product::where('id', $id)->with('images')->first();
+
         return view('pages.ecommerce.products.detail')->with([
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'product' => $product
         ]);
 
     }
@@ -64,7 +67,7 @@ class ProductsController extends Controller
                     $fileName = $name.$extension;
                     $dbPath = 'images/'.$category->slug_name.'/';
                     if (!file_exists(base_path() . '/public' . '/' . $dbPath)) {
-                        
+
                         mkdir(base_path() . '/public' . '/' . $dbPath);
 
                     }

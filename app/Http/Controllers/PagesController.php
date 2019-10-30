@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Product;
 use App\Profile;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Category;
 
 class PagesController extends Controller
 {
@@ -28,8 +27,11 @@ class PagesController extends Controller
     public function index()
     {
 
+        $products = Product::where('is_approved', 1)->with('images')->paginate(4);
+
         return view('index')->with([
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'products' => $products
         ]);
 
     }
@@ -58,4 +60,3 @@ class PagesController extends Controller
     }
 
 }
-    

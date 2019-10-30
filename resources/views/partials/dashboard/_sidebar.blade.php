@@ -13,17 +13,17 @@
     </a>
 
     <form action="{{ route('dashboard.logout') }}" method="POST">
-      
+
       <div class="row">
-        
+
         <div class="col text-center">
-          
+
           <button type="submit" class="btn btn-primary btn-round">Sair</button>
-        
+
         </div>
-        
+
       </div>
-    
+
     </form>
 
   </div>
