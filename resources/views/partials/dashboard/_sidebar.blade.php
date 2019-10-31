@@ -41,14 +41,18 @@
 
       </li>
 
-      <li @if (url()->current() == route('dashboard.categories.page')) class="active" @endif>
+      @if (Auth::user()->profile->id == 1)
 
-        <a href="{{ route('dashboard.categories.page') }}">
-          <i class="nc-icon nc-single-02"></i>
-          <p>Categorias</p>
-        </a>
+        <li @if (url()->current() == route('dashboard.categories.page')) class="active" @endif>
 
-      </li>
+          <a href="{{ route('dashboard.categories.page') }}">
+            <i class="nc-icon nc-single-02"></i>
+            <p>Categorias</p>
+          </a>
+
+        </li>
+          
+      @endif
 
       <li @if (url()->current() == route('users.register.page')) class="active" @endif>
 
@@ -59,14 +63,18 @@
 
       </li>
 
-      <li @if (url()->current() == route('category.register.page')) class="active" @endif>
+      @if (Auth::user()->profile->id == 1)
 
-        <a href="{{ route('category.register.page') }}">
-          <i class="nc-icon nc-single-02"></i>
-          <p>Cadastrar categoria</p>
-        </a>
+        <li @if (url()->current() == route('category.register.page')) class="active" @endif>
 
-      </li>
+          <a href="{{ route('category.register.page') }}">
+            <i class="nc-icon nc-single-02"></i>
+            <p>Cadastrar categoria</p>
+          </a>
+
+        </li>
+          
+      @endif
 
       <li @if (url()->current() == route('product.register.page')) class="active" @endif>
 

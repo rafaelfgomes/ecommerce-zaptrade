@@ -26,7 +26,7 @@
 
               <div class="card-body">
 
-                <form>
+                <form id="store-user-form">
 
                   <div class="row">
 
@@ -35,7 +35,7 @@
                       <div class="form-group">
 
                         <label>Nome</label>
-                        <input type="text" id="user-name" class="form-control" placeholder="Digite o nome">
+                        <input type="text" id="user-name" name="user-name" class="form-control" placeholder="Digite o nome">
 
                       </div>
 
@@ -46,7 +46,7 @@
                       <div class="form-group">
 
                         <label>E-mail</label>
-                        <input type="text" id="user-email" class="form-control" placeholder="Digite o e-mail">
+                        <input type="text" id="user-email" name="user-email" class="form-control" placeholder="Digite o e-mail">
 
                       </div>
 
@@ -60,7 +60,7 @@
 
                       <div class="form-group">
                         <label>Senha</label>
-                        <input type="password" id="user-password" class="form-control" placeholder="Digite a senha">
+                        <input type="password" id="user-password" name="user-password" class="form-control" placeholder="Digite a senha">
                       </div>
 
                     </div>
@@ -70,8 +70,7 @@
                       <div class="form-group">
 
                         <label>Perfil</label>
-                        <select class="custom-select" id="user-profile-id" name="user-profile-id" id="inputGroupSelectProfile"
-                        @if ($userProfileId > 1) disabled @endif>
+                        <select class="custom-select" id="user-profile-id" name="user-profile-id" @if ($userProfileId > 1) disabled @endif>
 
                             <option value="0" selected>Escolha o perfil</option>
                             @foreach ($profiles as $profile)

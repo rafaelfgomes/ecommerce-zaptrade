@@ -46,9 +46,11 @@ $(document).ready(function () {
     var label =  $(".custom-file-label")
     var str = ''
 
+    $('#images-preview').empty()
+
     $.each(files, function (index, element) {
 
-      if (index == 0 && label.length == 0) {
+      if (index == 0) {
 
         str = '"' + element.name + '"';
 
@@ -59,7 +61,7 @@ $(document).ready(function () {
       }
 
       $('#images-preview').removeClass('d-none')
-        $('#images-preview').append('<img src="'+ URL.createObjectURL(element) + '" class="rounded" style="width: 120px; height: 120px;">');
+      $('#images-preview').append('<div"><img src="'+ URL.createObjectURL(element) + '" class="rounded" style="width: 120px; height: 120px;"><div>');
 
     })
 
@@ -93,123 +95,6 @@ $(document).ready(function () {
       .fail(function() {
 
         toastr.error('Erro ao cadastrar a categoria')
-
-      })
-
-  })
-
-  //Cadastrar usuário
-  $('#store-user').on('click', function () {
-
-    var name = $('#user-name').val()
-    var email = $('#user-email').val()
-    var pass = $('#user-password').val()
-    var profileId = $('#user-profile-id').val()
-    var userLoggedProfileId = $('#user-logged-profile-id').val()
-
-    let url = $('#url').val() + '/users'
-
-    $.post(url, { name: name, email: email, password: pass, profile_id: profileId })
-      .done(function(response) {
-
-        if (response.user.profile_id == 1) {
-
-          var userType = 'Gerente'
-
-        } else {
-
-          var userType = 'Vendedor'
-
-        }
-
-        toastr.success(userType + ' ' + response.user.name + ' cadastrado com sucesso!', userType + ' cadastrado', {
-          timeOut: 2000,
-          fadeOut: 2000,
-          onHidden: function () {
-              window.location.reload();
-            }
-        })
-
-        $('#user-name').val('')
-        $('#user-email').val('')
-        $('#user-password').val('')
-
-        if (userLoggedProfileId == 1) {
-
-          $('#user-profile-id').val('0')
-
-        }
-
-      })
-      .fail(function() {
-
-        toastr.error('Erro ao cadastrar o usuário')
-
-      })
-
-  })
-
-  //Cadastrar produto
-  $('#product-store').on('click', function () {
-
-    let url = $('#url').val() + '/products'
-
-    let data = new FormData($('#store-product-form')[0])
-
-    $.ajax({
-      url: url,
-      data: data,
-      dataType:'json',
-      type:'POST',
-      processData: false,
-      contentType: false,
-      success: function(response){
-
-        toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
-          timeOut: 2000,
-          fadeOut: 2000,
-          onHidden: function () {
-              window.location.reload();
-            }
-        })
-
-        $('#product-name').val('')
-        $('#product-price').val('')
-        $('#product-description').val('')
-        $('#category-id').val(0)
-
-      },
-      error: function (error) {
-
-        toastr.error(error, 'Erro ao cadastrar o produto')
-
-      }
-    })
-
-    return
-
-    $.post(url, data)
-      .done(function(response) {
-
-        console.log(response)
-
-        toastr.success('Produto ' + response.user.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
-          timeOut: 2000,
-          fadeOut: 2000,
-          onHidden: function () {
-              window.location.reload();
-            }
-        })
-
-        $('#product-name').val('')
-        $('#product-price').val('')
-        $('#product-description').val('')
-
-
-      })
-      .fail(function(error) {
-
-
 
       })
 
@@ -276,6 +161,65 @@ $(document).ready(function () {
 
   })
 
+  //Cadastrar usuário
+  $('#store-user').on('click', function () {
+
+    var userLoggedProfileId = $('#user-logged-profile-id').val()
+    var profileId = $('#user-profile-id').val()
+
+    let url = $('#url').val() + '/users'
+    let data = new FormData($('#store-user-form')[0])
+    data.append('user-profile-id', profileId)
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType:'json',
+      type:'POST',
+      processData: false,
+      contentType: false,
+      success: function(response){
+
+        if (response.user.profile_id == 1) {
+
+          var userType = 'Gerente'
+
+        } else {
+
+          var userType = 'Vendedor'
+
+        }
+
+        toastr.success(userType + ' "' + response.user.name + '" cadastrado com sucesso!', userType + ' cadastrado', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#user-name').val('')
+        $('#user-email').val('')
+        $('#user-password').val('')
+
+        if (userLoggedProfileId == 1) {
+
+          $('#user-profile-id').val('0')
+
+        }
+
+      },
+      error: function (error) {
+
+        toastr.error(error, 'Erro ao cadastrar o usuário')
+
+      }
+
+    })
+
+  })
+
+  //Atualizar usuário
   $('#update-user').on('click', function () {
 
     var userId = $('#user-id').val()
@@ -319,6 +263,166 @@ $(document).ready(function () {
       }
 
     })
+
+  })
+
+  //Cadastrar produto
+  $('#product-store').on('click', function () {
+
+    let url = $('#url').val() + '/products'
+
+    let data = new FormData($('#store-product-form')[0])
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType:'json',
+      type:'POST',
+      processData: false,
+      contentType: false,
+      success: function(response){
+
+        toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#product-name').val('')
+        $('#product-price').val('')
+        $('#product-description').val('')
+        $('#category-id').val(0)
+
+      },
+      error: function (error) {
+
+        toastr.error(error, 'Erro ao cadastrar o produto')
+
+      }
+
+    })
+
+  })
+
+  //Dados no modal atualizar produto
+  $('#updateProductModal').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget)
+
+    var id = button.data('id')
+    let url= button.data('url')
+
+    let getUrl = url + '/products/' + id
+
+    var modal = $(this)
+
+    $.get(getUrl, function (response) {
+
+      $('#product-update-name').val(response.product.name)
+      $('#product-update-price').val(response.product.price)
+      $('#product-update-category').val(response.product.category.name)
+      $('#product-update-description').val(response.product.description)
+
+      $.each(response.product.images, function (index, element) {
+
+        var imageUrl = url + '/' + element.path + element.name
+
+        if (index == 0) {
+
+          str = '"' + element.name + '"';
+
+        } else {
+
+          str = str + '; ' + '"' + element.name + '"';
+
+        }
+
+        $('#images-preview').append('<div><img src="'+ imageUrl + '" class="rounded" style="width: 120px; height: 120px;"><div>');
+
+      })
+
+    })
+
+    return
+
+
+    $.ajax({
+      url: url,
+      data: data,
+      dataType:'json',
+      type:'GET',
+      processData: false,
+      contentType: false,
+      success: function(response){
+
+        toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+              window.location.reload();
+            }
+        })
+
+        $('#product-name').val('')
+        $('#product-price').val('')
+        $('#product-description').val('')
+        $('#category-id').val(0)
+
+      },
+
+    })
+
+
+    /*
+    let url = button.data('url') + '/categories/update'
+
+    var buttonUpdate = modal.find('.modal-footer button#button-update')
+
+    modal.find('.modal-body input#update-category-name').val(name)
+    modal.find('.modal-body input#update-slug-name').val(slug)
+
+    buttonUpdate.click(function () {
+
+      var newName = modal.find('.modal-body input#update-category-name').val()
+      var newSlug = modal.find('.modal-body input#update-slug-name').val()
+
+      data = {
+        id: id,
+        name: newName,
+        slug: newSlug
+      }
+
+      $.post(url, data)
+      .done(function() {
+
+        toastr.success('Categoria ' + name + ' atualizada com sucesso!', 'Categoria atualizada', {
+          timeOut: 2000,
+          fadeOut: 2000,
+          onHidden: function () {
+
+            window.location.reload();
+
+          }
+
+        })
+
+        $('#cat').val('')
+        $('#slug-name').val('')
+        $('#slug-name').attr('disabled', 'disabled')
+        $('#update-category').attr('disabled', 'disabled')
+
+      })
+      .fail(function() {
+
+        toastr.error('Erro ao atualizar a categoria')
+
+      })
+
+    })
+    */
+
 
   })
 

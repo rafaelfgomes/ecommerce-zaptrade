@@ -52,10 +52,10 @@ class UserController extends Controller
 
             $params = [
 
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'profile_id' => $request->profile_id
+                'name' => $request->input('user-name'),
+                'email' => $request->input('user-email'),
+                'password' => Hash::make($request->input('user-password')),
+                'profile_id' => $request->input('user-profile-id')
 
             ];
 

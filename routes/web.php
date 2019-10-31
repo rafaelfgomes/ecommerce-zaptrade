@@ -67,6 +67,7 @@ Route::group(['prefix' => '/'], function () {
 
         Route::get('register', 'ProductsController@register')->name('product.register.page');
         Route::post('', 'ProductsController@store')->name('product.store');
+        Route::get('{id}', 'ProductsController@show')->name('product.get');
         Route::post('{id}', 'ProductsController@update')->name('product.update');
 
     });

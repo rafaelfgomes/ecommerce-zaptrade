@@ -71,7 +71,8 @@ class CategoriesController extends Controller
 
         }
 
-        return response()->json([ 'category' => $category ]) ;
+        return response()->json([ 'category' => $category ]);
+
     }
 
 }

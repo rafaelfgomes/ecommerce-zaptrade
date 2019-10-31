@@ -29,17 +29,17 @@
                   <div class="table-responsive">
 
                     <table class="table">
-  
+
                       <thead class="text-primary">
                         <th>Produto</th>
                         <th>Categoria</th>
                         <th class="text-center">Ações</th>
                       </thead>
-  
+
                       <tbody>
-  
+
                         @foreach ($products as $product)
-  
+
                           <tr>
                             <td>
                               <img src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="" width="30" height="30">&nbsp;{{ $product->name }}
@@ -48,29 +48,29 @@
                               {{ $product->category->name }}
                             </td>
                             <td class="text-center">
-                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-price="{{ $product->price }}" data-description="{{ $product->description }}" data-active="{{ $product->is_approoved }}" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-edit"></i></button>
+                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-edit"></i></button>
                               @if (Auth::user()->profile->id == 1)
-                              
-                                <button type="button" id="delete-product" class="btn btn-danger btn-round" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-times"></i></button>
+
+                                <button type="button" id="disable-product" class="btn btn-danger btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-toggle="modal" data-target="#disableProductModal"><i class="fas fa-times"></i></button>
 
                               @endif
-                              
+
                             </td>
-                            
+
                           </tr>
-                            
+
                         @endforeach
-  
+
                       </tbody>
-  
+
                     </table>
-  
+
                   </div>
-                    
+
                 @else
 
                   <p class="h3 text-center pt-5">Não há produtos cadastrados.<br>Realize os cadastros <a href="{{ route('product.register.page') }}">nesta página</a></p>
-                    
+
                 @endif
 
               </div>

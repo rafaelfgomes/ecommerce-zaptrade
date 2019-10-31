@@ -33,6 +33,13 @@ class ProductsController extends Controller
 
     }
 
+    public function show($id)
+    {
+        $product = Product::with(['category', 'images'])->find($id);
+
+        return response()->json([ 'product' => $product ]);
+    }
+
     public function store(ProductStoreRequest $request)
     {
 
