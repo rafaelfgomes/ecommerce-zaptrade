@@ -6,12 +6,6 @@ html {
   background: #fff !important;
 }
 
-form {
-
-  width: 75%;
-
-}
-
 .user_card {
   height: 400px;
   width: 430px;
@@ -74,4 +68,8 @@ form {
 }
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #000 !important;
+}
+
+#login-dashboard-form {
+  width: 75%;
 }

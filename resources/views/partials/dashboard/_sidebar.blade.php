@@ -6,7 +6,7 @@
 
       <div class="logo-image-small pt-3">
 
-        @if ($user->profile_id == 1)
+        @if ( Auth::user()->profile_id == 1)
           <img src="{{ asset('images/dashboard/manager-avatar.jpg') }}">
         @else
           <img src="{{ asset('images/dashboard/user-avatar.jpg') }}">

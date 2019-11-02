@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 70);
             $table->decimal('price', 10);
-            $table->string('description', 180);
+            $table->string('description', 700);
             $table->char('is_approved', 1);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');

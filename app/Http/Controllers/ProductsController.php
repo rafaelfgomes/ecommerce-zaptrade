@@ -4,14 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Product;
 use App\Category;
-use App\Http\Requests\ProductAproveRequest;
+use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Image as ImageModel;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as Img;
 
 class ProductsController extends Controller
@@ -48,63 +47,79 @@ class ProductsController extends Controller
     public function store(ProductStoreRequest $request)
     {
 
-        $category = Category::find($request->input('category-id'));
+        DB::beginTransaction();
 
-        $price = str_replace('R$ ', '', $request->input('product-price'));
-        $price = str_replace('.', '',$price);
-        $price = str_replace(',', '.', $price);
+        try {
 
-        $data = [
-            'name' => $request->input('product-name'),
-            'price' => $price,
-            'description' => $request->input('product-description'),
-            'category_id' => $request->input('category-id'),
-            'is_approved' => 0
-        ];
+            $category = Category::find($request->input('category-id'));
 
-        $product = Product::create($data);
+            $price = str_replace('R$ ', '', $request->input('product-price'));
+            $price = str_replace('.', '',$price);
+            $price = str_replace(',', '.', $price);
 
-        if ($product) {
+            $data = [
+                'name' => $request->input('product-name'),
+                'price' => $price,
+                'description' => $request->input('product-description'),
+                'category_id' => $request->input('category-id'),
+                'is_approved' => 0
+            ];
 
-            if ($request->has('product-images')) {
+            $product = Product::create($data);
 
-                foreach ($request->file('product-images') as $key => $image) {
+            if ($product) {
 
-                    $img = Img::make($image);
-                    $name = $image->getClientOriginalName();
-                    $extension = $image->getExtension();
+                if ($request->has('product-images')) {
 
-                    $fileName = $name.$extension;
-                    $dbPath = 'images/'.$category->slug_name.'/';
-                    if (!file_exists(base_path() . '/public' . '/' . $dbPath)) {
+                    $categoryProductImagesPath = 'ecommerce/products/' . $category->slug_name . '/';
+                    $dbPath = 'images/'.$categoryProductImagesPath;
+                    $fullPath = base_path() . '/public' . '/' . $dbPath;
 
-                        mkdir(base_path() . '/public' . '/' . $dbPath);
+                    if (!file_exists($fullPath)) {
+
+                        mkdir($fullPath);
 
                     }
-                    $path = public_path($dbPath.$fileName);
 
-                    $img->save($path);
+                    foreach ($request->file('product-images') as $image) {
 
-                    $imgData = [
-                        'name' => $name,
-                        'path' => $dbPath,
-                        'product_id' => $product->id
-                    ];
+                        $imgName = Str::uuid();
+                        $imgExtension = $image->extension();
 
-                    ImageModel::create($imgData);
+                        $imgPath = public_path($dbPath . $imgName . '.' . $imgExtension);
+
+                        $img = Img::make($image)->resize(1000, 1100);
+                        $img->save($imgPath);
+
+                        $imgData = [
+                            'name' => $imgName . '.' . $imgExtension,
+                            'path' => $dbPath,
+                            'product_id' => $product->id
+                        ];
+
+                        ImageModel::create($imgData);
+
+                    }
 
                 }
 
+                DB::table('product_user')->insert([
+                    'product_id' => $product->id,
+                    'user_id' => Auth::user()->id,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+
             }
 
-            DB::table('product_user')->insert([
-                'product_id' => $product->id,
-                'user_id' => Auth::user()->id,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now()
-            ]);
+        } catch (\Exception $e) {
+
+            DB::rollBack();
+            return response()->json([ 'message' => $e->getMessage() ], 400);
 
         }
+
+        DB::commit();
 
         return response()->json([ 'product' => $product ]);
 
@@ -133,27 +148,28 @@ class ProductsController extends Controller
 
             if ($request->has('product-images')) {
 
-                foreach ($request->file('product-update-images') as $key => $image) {
+                $categoryProductImagesPath = 'ecommerce/products/' . $category->slug_name . '/';
+                $dbPath = 'images/'.$categoryProductImagesPath;
+                $fullPath = base_path() . '/public' . '/' . $dbPath;
 
-                    $img = Img::make($image);
-                    $name = $image->getClientOriginalName();
-                    $extension = $image->getExtension();
+                if (!file_exists($fullPath)) {
 
-                    $fileName = $name.$extension;
-                    $dbPath = 'images/'.$category->slug_name.'/';
+                    mkdir($fullPath);
 
-                    if (!file_exists(base_path() . '/public' . '/' . $dbPath)) {
+                }
 
-                        mkdir(base_path() . '/public' . '/' . $dbPath);
+                foreach ($request->file('product-images') as $image) {
 
-                    }
+                    $imgName = Str::uuid();
+                    $imgExtension = $image->extension();
 
-                    $path = public_path($dbPath.$fileName);
+                    $imgPath = public_path($dbPath . $imgName . '.' . $imgExtension);
 
-                    $img->save($path);
+                    $img = Img::make($image)->resize(1000, 1100);
+                    $img->save($imgPath);
 
                     $imgData = [
-                        'name' => $name,
+                        'name' => $imgName . '.' . $imgExtension,
                         'path' => $dbPath,
                         'product_id' => $product->id
                     ];
@@ -162,14 +178,14 @@ class ProductsController extends Controller
 
                 }
 
-                DB::table('product_user')->insert([
-                    'product_id' => $product->id,
-                    'user_id' => Auth::user()->id,
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now()
-                ]);
-
             }
+
+            DB::table('product_user')->insert([
+                'product_id' => $product->id,
+                'user_id' => Auth::user()->id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+            ]);
 
         }
 

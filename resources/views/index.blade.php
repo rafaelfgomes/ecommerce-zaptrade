@@ -8,76 +8,97 @@
 
   <section class="ftco-section bg-light">
 
-    <div class="container">
+    @if (count($products) == 0)
 
-      <div class="row justify-content-center mb-3 pb-3">
+      <div class="container">
 
-        <div class="col-md-12 heading-section text-center ftco-animate">
+        <div class="row justify-content-center mb-3 pb-3">
 
-          <h2>Produtos com preços imperdíveis</h2>
+          <div class="col-md-12 heading-section text-center ftco-animate">
+
+            <h2>Ainda não há produtos para mostrar neste e-commerce, por favor volte mais tarde.</h2>
+
+          </div>
 
         </div>
 
       </div>
 
-    </div>
+    @else
 
-    <div class="container">
+      <div class="container">
 
-      <div class="row">
+        <div class="row justify-content-center mb-3 pb-3">
 
-        @foreach ($products as $product)
+          <div class="col-md-12 heading-section text-center ftco-animate">
 
-          <div class="col-sm col-md-6 col-lg ftco-animate">
+            <h2>Produtos com preços imperdíveis</h2>
 
-            <div class="product">
+          </div>
 
-              <a href="{{ route('product.details', $product->id) }}" class="img-prod"><img class="img-fluid mx-auto d-block" src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="{{ $product->name }}">
-                <div class="overlay"></div>
-              </a>
+        </div>
 
-              <div class="text py-3 px-3">
+      </div>
 
-                <h3 class="text-center">
-                  <a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
-                </h3>
+      <div class="container">
 
-                <div class="text-center">
+        <div class="row">
 
-                  <p class="price h2">
-                    <span>R$&nbsp;{{ number_format(floatval($product->price), 2, ',', '.') }}</span>
+          @foreach ($products as $product)
+
+            <div class="col-sm col-md-6 col-lg ftco-animate">
+
+              <div class="product">
+
+                <a href="{{ route('product.details', $product->id) }}" class="img-prod">
+                  <img class="img-fluid mx-auto d-block" width="500" height="550" src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="{{ $product->name }}">
+                  <div class="overlay"></div>
+                </a>
+
+                <div class="text py-3 px-3">
+
+                  <h3 class="text-center">
+                    <a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
+                  </h3>
+
+                  <div class="text-center">
+
+                    <p class="price h2">
+                      <span>R$&nbsp;{{ number_format(floatval($product->price), 2, ',', '.') }}</span>
+                    </p>
+
+                  </div>
+
+                  <p class="bottom-area d-flex px-3">
+
+                    <a href="{{ route('product.details', $product->id) }}" class="add-to-cart text-center py-2 mr-1">
+                      <span>
+                        <i class="ion-ios-add mr-2"></i>Detalhes
+                      </span>
+                    </a>
+
                   </p>
 
                 </div>
-
-                <p class="bottom-area d-flex px-3">
-
-                  <a href="{{ route('product.details', $product->id) }}" class="add-to-cart text-center py-2 mr-1">
-                    <span>
-                      <i class="ion-ios-add mr-2"></i>Detalhes
-                    </span>
-                  </a>
-
-                </p>
 
               </div>
 
             </div>
 
-          </div>
+          @endforeach
 
-        @endforeach
+        </div>
 
-      </div>
+        {{-- Paginação --}}
+        <div class="row mt-5">
 
-      {{-- Paginação --}}
-      <div class="row mt-5">
+          <div class="col text-center">
 
-        <div class="col text-center">
+            <div class="block-27">
 
-          <div class="block-27">
+                {{ $products->links() }}
 
-              {{ $products->links() }}
+            </div>
 
           </div>
 
@@ -85,7 +106,7 @@
 
       </div>
 
-    </div>
+    @endif
 
   </section>
 

@@ -6,7 +6,7 @@
 
     @include('partials.ecommerce._navbar')
 
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url({{ asset('images/ecommerce/generic.jpg') }});">
 
         <div class="container">
 
@@ -110,7 +110,7 @@
 
                     <p class="price"><span>R$&nbsp;{{ number_format(floatval($product->price), 2, ',', '.') }}</span></p>
 
-                    <p>{{ $product->description }}</p>
+                    <p class="text-justify">{{ $product->description }}</p>
 
                 </div>
 
