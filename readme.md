@@ -1,5 +1,3 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
-
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
@@ -7,66 +5,104 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
+## Sobre este projeto
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Este projeto é um simples e-commerce feito com o framework Laravel na versão 5.8 usando somente o blade para o frontend e MySQL como ferramenta de banco de dados. Nele há um painel administrativo para cadastro de usuários, produtos e categorias.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Pré requisitos necessários para executar este projeto
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [PHP 7 (>= 7.2.0)](https://www.php.net/).
+- [MySQL](https://laravel.com/docs/container).
+- [Composer](https://getcomposer.org/)
+- [Node e NPM](https://nodejs.org/pt-br/)
 
-## Learning Laravel
+- OBS: Para que o projeto funcione sem problemas com o Laravel, é necessário instalar as seguintes extensões do PHP:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **BCMath**
+- **Ctype**
+- **JSON**
+- **Mbstring**
+- **OpenSSL**
+- **PDO**
+- **Tokenizer**
+- **XML**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Pré configuração do banco de dados
 
-## Laravel Sponsors
+Antes de iniciar é preciso criar um banco de dados para a aplicação. Isto pode ser feito de diversas formas e com diversos gerenciadores. Neste projeto usei o mysql-workbench, mas podem ser usados vários outros. Abaixo uma lista dos principais gerenciadores:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- [MySQL Workbench] (https://www.mysql.com/products/workbench/)
+- [DBeaver] (https://dbeaver.io/)
+- [phpMyAdmin] (https://www.phpmyadmin.net/)
+- [Valentina Studio] (https://www.valentina-db.com/en/valentina-studio-overview)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+Com seu gerenciador preferido, crie um banco de dados com o nome que desejar.
 
-## Contributing
+## Baixando e configurando o projeto
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Faça o clone deste projeto para seu computador executando o comando:
 
-## Security Vulnerabilities
+```
+git clone https://github.com/rafaelfgomes/ecommerce-zaptrade.git 
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Após fazer o clone deste projeto, entre na pasta raiz do projeto e execute os seguintes comandos para preparar o ambiente:
 
-## License
+```bash
+php artisan cp .env.example .env
+php artisan key:generate
+```
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Agora execute estes comandos para instalar as dependências do composer e do node:
+
+```bash
+composer install
+npm install
+```
+
+É preciso que seja setado no arquivo ".env" as credenciais do banco que será utilizado na aplicação:
+
+```
+DB_CONNECTION=<driver do banco (mysql, sqlserver, etc)>
+DB_HOST=<endereço do banco (remoto ou local)>
+DB_PORT=<porta do banco de dados (o padrão é 3306)>
+DB_DATABASE=<nome do banco de dados (explicado na seção anterior)>
+DB_USERNAME=<usuário do banco>
+DB_PASSWORD=<senha do usuário do banco>
+```
+
+## Criando e populando previamente as tabelas
+
+É preciso criar as tabelas no banco fazer o cadastro inicial de algumas categorias e perfis. Isso é feito na pasta raiz do projeto através do comando:
+
+```
+php artisan migrate --seed
+```
+
+## Executando o projeto
+
+O projeto pode ser executado digitando o seguinte comando na pasta raiz
+
+```
+php artisan serve
+```
+
+Este comando iniciará o servidor web do php no endereço local na porta 8000 por padrão. Caso queira uma porta diferente da padrão use o parâmetro --port:
+
+```
+php artsan serve --port=9000
+```
+
+Agora é só acessar o navegador no endereço: "127.0.0.1:8000". Ou caso tenha setado uma porta diferente: "127.0.0.1:9000".
+
+## Ecommerce e Dashboard
+
+A princípio o ecommerce estará vazio, sem nenhum produto cadastrado. Para que seja cadastrado os produtos, categorias e usuários, é necessário que se acesse o dashboard no seguinte endpoint: '/auth/dashboard'. Exemplo:
+
+- http://127.0.0.1:8000/auth/dashboard
+
+Há um gerente teste e um usuário teste cadastrados. Eles podem logar com as credenciais: (usuário: gerente@zaptrade.com.br / senha: 123456) ou (usuário: vendedor@zaptrade.com.br / senha: 123456).
+
+## Licença
+
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
