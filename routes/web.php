@@ -69,6 +69,7 @@ Route::group(['prefix' => '/'], function () {
         Route::post('', 'ProductsController@store')->name('product.store');
         Route::get('{id}', 'ProductsController@show')->name('product.get');
         Route::post('{id}', 'ProductsController@update')->name('product.update');
+        Route::post('toggle-approve/{id}', 'ProductsController@toggleApprove')->name('product.toggle.approve');
 
     });
 

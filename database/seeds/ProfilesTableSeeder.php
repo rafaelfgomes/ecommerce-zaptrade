@@ -21,7 +21,7 @@ class ProfilesTableSeeder extends Seeder
          ];
 
          Profile::insert($params);
-        
+
     }
 
 }

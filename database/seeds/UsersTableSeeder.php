@@ -14,8 +14,25 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        factory(User::class, 10)->create();
+        $params = [
+
+            [
+                'name' => 'Gerente teste',
+                'email' => 'gerente@zaptrade.com.br',
+                'password' => Hash::make('123456'),
+                'profile_id' => 1
+            ],
+            [
+                'name' => 'Vendedor teste',
+                'email' => 'vendedor@zaptrade.com.br',
+                'password' => Hash::make('123456'),
+                'profile_id' => 2
+            ]
+
+        ];
+
+        User::insert($params);
 
     }
-    
+
 }

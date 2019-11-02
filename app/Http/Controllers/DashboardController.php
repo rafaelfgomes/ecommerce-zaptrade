@@ -38,6 +38,11 @@ class DashboardController extends Controller
 
     }
 
+    /**
+     * List all products.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function products()
     {
 
@@ -58,12 +63,17 @@ class DashboardController extends Controller
 
     }
 
+    /**
+     * List all categories.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function categories()
     {
 
         return view('pages.dashboard.categories.index')->with([
 
-            'categories' => Category::paginate(4)
+            'categories' => Category::with('products')->paginate(4)
 
         ]);
 

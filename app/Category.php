@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,7 +25,7 @@ class Category extends Model
     {
 
         return $this->hasMany('App\Product');
-    
+
     }
 
 }

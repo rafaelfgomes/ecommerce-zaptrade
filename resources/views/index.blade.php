@@ -32,25 +32,21 @@
 
             <div class="product">
 
-              <a href="{{ route('product.details', $product->id) }}" class="img-prod"><img class="img-fluid" src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="{{ $product->name }}">
+              <a href="{{ route('product.details', $product->id) }}" class="img-prod"><img class="img-fluid mx-auto d-block" src="{{ asset($product->images[0]->path.$product->images[0]->name) }}" alt="{{ $product->name }}">
                 <div class="overlay"></div>
               </a>
 
               <div class="text py-3 px-3">
 
-                <h3>
+                <h3 class="text-center">
                   <a href="{{ route('product.details', $product->id) }}">{{ $product->name }}</a>
                 </h3>
 
-                <div class="d-flex">
+                <div class="text-center">
 
-                  <div class="pricing">
-
-                    <p class="price">
-                      <span>R$&nbsp;{{ number_format(floatval($product->price), 2, ',', '.') }}</span>
-                    </p>
-
-                  </div>
+                  <p class="price h2">
+                    <span>R$&nbsp;{{ number_format(floatval($product->price), 2, ',', '.') }}</span>
+                  </p>
 
                 </div>
 

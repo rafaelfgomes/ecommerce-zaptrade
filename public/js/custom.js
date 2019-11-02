@@ -61,7 +61,7 @@ $(document).ready(function () {
       }
 
       $('#images-preview').removeClass('d-none')
-      $('#images-preview').append('<div"><img src="'+ URL.createObjectURL(element) + '" class="rounded" style="width: 120px; height: 120px;"><div>');
+      $('#images-preview').append('<div><img src="'+ URL.createObjectURL(element) + '" class="rounded" style="width: 120px; height: 120px;"><div>');
 
     })
 
@@ -306,24 +306,30 @@ $(document).ready(function () {
 
   })
 
-  //Dados no modal atualizar produto
+  //Atualizar produto
   $('#updateProductModal').on('show.bs.modal', function (event) {
 
     var button = $(event.relatedTarget)
 
     var id = button.data('id')
     let url= button.data('url')
-
     let getUrl = url + '/products/' + id
-
-    var modal = $(this)
 
     $.get(getUrl, function (response) {
 
       $('#product-update-name').val(response.product.name)
-      $('#product-update-price').val(response.product.price)
-      $('#product-update-category').val(response.product.category.name)
+      $('#product-update-name').removeAttr('disabled', 'disabled')
+      $('#product-update-price').val(response.product.price.replace('.', ','))
+      $('#product-update-price').maskMoney()
+      $('#product-update-price').removeAttr('disabled', 'disabled')
+      $("#product-update-price").focus()
+      $('#category-update-id').val(response.product.category.id)
+      $('#category-update-id').removeAttr('disabled', 'disabled')
       $('#product-update-description').val(response.product.description)
+      $('#product-update-description').removeAttr('disabled', 'disabled')
+      $("#product-update-name").focus();
+
+      $('#images-preview').empty()
 
       $.each(response.product.images, function (index, element) {
 
@@ -343,86 +349,114 @@ $(document).ready(function () {
 
       })
 
-    })
-
-    return
-
-
-    $.ajax({
-      url: url,
-      data: data,
-      dataType:'json',
-      type:'GET',
-      processData: false,
-      contentType: false,
-      success: function(response){
-
-        toastr.success('Produto ' + response.product.name + ' cadastrado com sucesso!', 'Produto cadastrado', {
-          timeOut: 2000,
-          fadeOut: 2000,
-          onHidden: function () {
-              window.location.reload();
-            }
-        })
-
-        $('#product-name').val('')
-        $('#product-price').val('')
-        $('#product-description').val('')
-        $('#category-id').val(0)
-
-      },
+      $('#product-update-images').removeAttr('disabled', 'disabled')
+      $('#images-preview').removeClass('d-none')
 
     })
 
+    var modal = $(this)
 
-    /*
-    let url = button.data('url') + '/categories/update'
-
-    var buttonUpdate = modal.find('.modal-footer button#button-update')
-
-    modal.find('.modal-body input#update-category-name').val(name)
-    modal.find('.modal-body input#update-slug-name').val(slug)
+    var buttonUpdate = modal.find('.modal-footer button#update-product')
 
     buttonUpdate.click(function () {
 
-      var newName = modal.find('.modal-body input#update-category-name').val()
-      var newSlug = modal.find('.modal-body input#update-slug-name').val()
+      let postUrl = url + '/products/' + id
 
-      data = {
-        id: id,
-        name: newName,
-        slug: newSlug
-      }
+      var data = new FormData($('#update-product-form')[0])
+      var selectedCategory = $('#category-update-id').val()
 
-      $.post(url, data)
-      .done(function() {
+      data.append('category-update-id', selectedCategory)
 
-        toastr.success('Categoria ' + name + ' atualizada com sucesso!', 'Categoria atualizada', {
-          timeOut: 2000,
-          fadeOut: 2000,
-          onHidden: function () {
+      $.ajax({
+        url: postUrl,
+        data: data,
+        dataType:'json',
+        type:'POST',
+        processData: false,
+        contentType: false,
+        success: function(response){
 
-            window.location.reload();
+          toastr.success('Produto ' + response.product.name + ' atualizado com sucesso!', 'Produto atualizado', {
+            timeOut: 2000,
+            fadeOut: 2000,
+            onHidden: function () {
+                window.location.reload();
+              }
+          })
 
-          }
+          $('#product-name').val('')
+          $('#product-price').val('')
+          $('#product-description').val('')
+          $('#category-id').val(0)
 
-        })
+        },
+        error: function (error) {
 
-        $('#cat').val('')
-        $('#slug-name').val('')
-        $('#slug-name').attr('disabled', 'disabled')
-        $('#update-category').attr('disabled', 'disabled')
+          toastr.error(error.responseJSON.message, 'Erro ao atualizar o produto')
 
-      })
-      .fail(function() {
-
-        toastr.error('Erro ao atualizar a categoria')
+        }
 
       })
 
     })
-    */
 
+  })
+
+  //Aprovar/desaprovar produto
+  $('#approvalProductModal').on('show.bs.modal', function (event) {
+
+    var button = $(event.relatedTarget)
+
+    var id = button.data('id')
+    var url = button.data('url')
+    var approve = button.data('approved')
+    var approvalName = (button.data('approved') == 1) ? 'desaprovar' : 'aprovar'
+    var approvalNameCapitalized = approvalName[0].toUpperCase() + approvalName.substr(1)
+
+    var modal = $(this)
+
+    let approveUrl = url + '/products/toggle-approve/' + id
+    var buttonApprove = modal.find('.modal-footer button#button-approve')
+
+    if (approve == 1) {
+      buttonApprove.removeClass('btn-success')
+      buttonApprove.addClass('btn-danger')
+    } else {
+      buttonApprove.removeClass('btn-danger')
+      buttonApprove.addClass('btn-success')
+    }
+
+    modal.find('.modal-body p#approval-text').html('Deseja ' + approvalName + ' o produto?')
+
+    buttonApprove.html(approvalNameCapitalized)
+
+    buttonApprove.click(function () {
+
+      $.ajax({
+        url: approveUrl,
+        type:'POST',
+        processData: false,
+        contentType: false,
+        success: function(response){
+
+          toastr.success('Produto ' + response.product.name + ' ' + response.approve_name + ' com sucesso!', 'Produto ' + response.approve_name, {
+            timeOut: 2000,
+            fadeOut: 2000,
+            onHidden: function () {
+                window.location.reload();
+              }
+          })
+
+        },
+        error: function (error) {
+
+          toastr.error('Não foi possível atualizar o produto', 'Erro')
+
+        }
+
+      })
+
+    })
 
   })
 

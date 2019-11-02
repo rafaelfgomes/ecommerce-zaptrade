@@ -22,14 +22,14 @@ class CategoriesController extends Controller
 
     }
 
-    public function register()
-    {
+    // public function register()
+    // {
 
-        return view('pages.dashboard.categories.register')->with([
-            'categories' => Category::all()
-        ]);
+    //     return view('pages.dashboard.categories.register')->with([
+    //         'categories' => Category::all()
+    //     ]);
 
-    }
+    // }
 
     public function store(CategoryStoreRequest $request)
     {

@@ -48,10 +48,20 @@
                               {{ $product->category->name }}
                             </td>
                             <td class="text-center">
-                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-toggle="modal" data-target="#updateProductModal"><i class="fas fa-edit"></i></button>
+
+                              <button type="button" class="btn btn-primary btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-toggle="modal" data-target="#updateProductModal" @if ($product->is_approved == 0) disabled @endif><i class="fas fa-edit"></i></button>
+
                               @if (Auth::user()->profile->id == 1)
 
-                                <button type="button" id="disable-product" class="btn btn-danger btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-toggle="modal" data-target="#disableProductModal"><i class="fas fa-times"></i></button>
+                                @if ($product->is_approved == 1)
+
+                                  <button type="button" id="disable-product" class="btn btn-danger btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-approved="{{ $product->is_approved }}" data-toggle="modal" data-target="#approvalProductModal"><i class="fas fa-times"></i></button>
+
+                                @else
+
+                                  <button type="button" id="disable-product" class="btn btn-success btn-round" data-url="{{ url('/') }}" data-id="{{ $product->id }}" data-approved="{{ $product->is_approved }}" data-toggle="modal" data-target="#approvalProductModal"><i class="fas fa-check"></i></button>
+
+                                @endif
 
                               @endif
 
@@ -82,6 +92,7 @@
         </div>
 
         @include('pages.components.dashboard.update-product-modal')
+        @include('pages.components.dashboard.approval-modal')
 
       </div>
 
