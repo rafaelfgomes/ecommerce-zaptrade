@@ -3,28 +3,24 @@
   <div class="logo">
 
     <a href="{{ route('dashboard.index') }}" class="simple-text logo-mini">
+
       <div class="logo-image-small pt-3">
-        <img src="{{ asset('images/dashboard/logo-small.png') }}">
+
+        @if ($user->profile_id == 1)
+          <img src="{{ asset('images/dashboard/manager-avatar.jpg') }}">
+        @else
+          <img src="{{ asset('images/dashboard/user-avatar.jpg') }}">
+        @endif
+
       </div>
+
     </a>
 
     <a href="{{ route('dashboard.index') }}" class="simple-text logo-normal">
+
       <span class="small">{{ Auth::user()->name }}<br>{{ Auth::user()->profile->name }}</span>
+
     </a>
-
-    <form action="{{ route('dashboard.logout') }}" method="POST">
-
-      <div class="row">
-
-        <div class="col text-center">
-
-          <button type="submit" class="btn btn-primary btn-round">Sair</button>
-
-        </div>
-
-      </div>
-
-    </form>
 
   </div>
 
@@ -51,7 +47,7 @@
           </a>
 
         </li>
-          
+
       @endif
 
       <li @if (url()->current() == route('users.register.page')) class="active" @endif>
@@ -73,7 +69,7 @@
           </a>
 
         </li>
-          
+
       @endif
 
       <li @if (url()->current() == route('product.register.page')) class="active" @endif>

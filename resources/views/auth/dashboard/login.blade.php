@@ -12,7 +12,7 @@
 
                     <div class="brand_logo_container">
 
-                        <img src="{{ asset('images/zaptradeadmin.jpg') }}" class="brand_logo" alt="Logo">
+                        <img src="{{ asset('images/dashboard/logo-zaptrade.png') }}" class="brand_logo rounded-circle" alt="Logo">
 
                     </div>
 
@@ -44,7 +44,7 @@
                         <div class="input-group mb-4">
 
                             <div class="input-group-append">
-                                <span class="input-group-text pt-1 pr-2 pl-2"><i class="fas fa-key"></i></span>
+                                <span class="input-group-text pt-1 pr-2 pl-2"><i class="fas fa-cog"></i></span>
                             </div>
 
                             <select class="custom-select select-profiles" id="profile-id" name="profile-id" id="inputGroupSelectProfile">

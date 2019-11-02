@@ -35,7 +35,7 @@ Route::group(['prefix' => '/'], function () {
 
     Route::group([ 'prefix' => 'auth' ], function () {
 
-        Route::get('dashboard', 'PagesController@login')->name('dashboard.login.page');
+        Route::get('dashboard', 'DashboardController@login')->name('dashboard.login.page');
         Route::post('dashboard', 'Auth\LoginController@login')->name('dashboard.login');
         Route::post('logout', 'Auth\LoginController@logout')->name('dashboard.logout');
 

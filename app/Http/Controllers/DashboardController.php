@@ -17,7 +17,21 @@ class DashboardController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth');
+        $this->middleware('auth')->except('login');
+
+    }
+
+    /**
+     * Show the login form.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function login()
+    {
+
+        return view('auth.dashboard.login')->with([
+            'profiles' => Profile::all()
+        ]);
 
     }
 

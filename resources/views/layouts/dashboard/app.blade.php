@@ -15,13 +15,13 @@
             <main>
 
                 @yield('content')
-                
+
             </main>
 
         </div>
 
         @include('partials.dashboard._scripts')
-    
+
     </body>
-    
+
 </html>

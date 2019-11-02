@@ -20,7 +20,7 @@
 
               <div class="image">
 
-                <img src="{{ asset('images/dashboard/damir-bosnjak.jpg') }}" alt="...">
+                <img src="{{ asset('images/dashboard/background-user-profile.jpg') }}" alt="Background user profile">
 
               </div>
 
@@ -28,12 +28,17 @@
 
                 <div class="author">
 
-                  <a href="#" class="text-decoration-none">
+                  @if ($user->profile_id == 1)
 
-                    <img class="avatar border-gray" src="{{ asset('images/dashboard/logo-small.png') }}" alt="">
-                    <h5 class="title">{{ $user->name }}</h5>
+                    <img class="avatar border-gray" src="{{ asset('images/dashboard/manager-avatar.jpg') }}" alt="">
 
-                  </a>
+                  @else
+
+                    <img class="avatar border-gray" src="{{ asset('images/dashboard/user-avatar.jpg') }}" alt="">
+
+                  @endif
+
+                  <h5 class="title">{{ $user->name }}</h5>
 
                   <p class="description">
                     {{ $user->email }}

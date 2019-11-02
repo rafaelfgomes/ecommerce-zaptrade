@@ -39,20 +39,6 @@ class PagesController extends Controller
     }
 
     /**
-     * Show the login form.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function login()
-    {
-
-        return view('auth.dashboard.login')->with([
-            'profiles' => Profile::all()
-        ]);
-
-    }
-
-    /**
      * Show the contact page.
      *
      * @return \Illuminate\Contracts\Support\Renderable
