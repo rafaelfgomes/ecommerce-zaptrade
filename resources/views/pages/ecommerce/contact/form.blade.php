@@ -6,7 +6,7 @@
 
   @include('partials.ecommerce._navbar')
 
-  <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+  <div class="hero-wrap hero-bread" style="background-image: url({{ asset('images/ecommerce/generic.jpg') }});">
 
     <div class="container">
 
@@ -85,7 +85,9 @@
         </div>
 
         <div class="col-md-6 d-flex">
-            <div id="map" class="bg-white"></div>
+            <div id="map" class="bg-white">
+              <img src="{{ asset('images/ecommerce/localzaptrade.png') }}" style="width: 100%; height: 100%;" alt="Local zaptrade">
+            </div>
         </div>
 
       </div>
